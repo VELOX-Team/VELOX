@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VELOX | خودروهای لوکس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;600;800&family=Cormorant+Garamond:wght@400;500;600&display=swap">
+<style>
+:root{--k:#111315;--c:#25282B;--w:#F5F4F0;--g:#B49A72;--ln:rgba(245,244,240,.1);--f:'Vazirmatn',Tahoma,sans-serif;--s:'Cormorant Garamond',Georgia,serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;height:100%}
+body{margin:0;background:var(--k);color:var(--w);font-family:var(--f);line-height:1.8;font-weight:300}
+button,input,select{font:inherit;color:inherit}button{cursor:pointer}
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+.logo{font-family:var(--s);font-size:26px;letter-spacing:.45em;font-weight:500;direction:ltr;background:none;border:0;padding:0;color:var(--w)}
+header{position:sticky;top:0;z-index:30;background:rgba(17,19,21,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--ln)}
+header.over{position:absolute;inset-inline:0;background:linear-gradient(#111315cc,transparent);border:0;backdrop-filter:none}
+.bar{display:flex;align-items:center;justify-content:space-between;height:76px;direction:ltr}
+nav{display:flex;gap:6px;direction:rtl}
+nav button{background:none;border:0;color:#b9b7b0;padding:8px 16px;font-size:14px;position:relative;transition:.2s}
+nav button:hover,nav button.on{color:var(--g)}
+nav button.on::after{content:"";position:absolute;inset-inline:16px;bottom:-2px;height:1px;background:var(--g)}
+.ico{display:flex;gap:6px;align-items:center}
+.ib{background:none;border:0;color:var(--w);width:40px;height:40px;position:relative;display:grid;place-items:center;transition:.2s}
+.ib:hover{color:var(--g)}.ib svg{width:20px;height:20px}
+.ib i{position:absolute;top:2px;right:0;min-width:16px;height:16px;border-radius:9px;background:var(--g);color:var(--k);font:600 10px/16px var(--f);font-style:normal;text-align:center}
+.burger{display:none}
+.btn{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--g);background:var(--g);color:var(--k);padding:12px 30px;border-radius:99px;font-weight:600;font-size:14px;transition:.25s}
+.btn:hover{background:transparent;color:var(--g)}
+.btn.ghost{background:transparent;color:var(--w);border-color:rgba(245,244,240,.25)}.btn.ghost:hover{border-color:var(--g);color:var(--g)}
+.btn svg{width:16px;height:16px}
+.eyebrow{font-family:var(--s);color:var(--g);letter-spacing:.3em;font-size:13px;direction:ltr;text-transform:uppercase}
+h1,h2,h3{font-weight:300;margin:0}
+h1{font-size:clamp(36px,4.6vw,64px);line-height:1.25}
+h2{font-size:clamp(24px,2.8vw,36px);line-height:1.35;font-weight:600}
+h1 em,h2 em{font-style:normal;color:var(--g);font-weight:600}
+.muted{color:#8c8a84;font-size:14px;margin:4px 0 0}
+svg.car,img.car{width:100%;height:auto;display:block}
+/* hero */
+.hero{position:relative;min-height:min(100vh,760px);overflow:hidden;background:#0d0e10;display:flex;align-items:center}
+.hero .bg{position:absolute;inset:0;width:100%;height:100%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,14,16,.88),rgba(13,14,16,.15) 60%,transparent);direction:ltr;pointer-events:none}
+.hero .wrap{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:5fr 7fr;gap:0;align-items:center;direction:ltr;padding-top:80px}
+.htxt{direction:rtl;text-align:right;max-width:420px;animation:up .8s ease both}
+.htxt h1{margin-bottom:18px}.htxt p{color:#c9c7c0;margin:0 0 30px}
+.hcar{animation:in 1s ease both;transform:scale(1.15) translateX(4%)}
+@keyframes up{from{opacity:0;transform:translateY(18px)}}@keyframes in{from{opacity:0}}
+@media(prefers-reduced-motion:reduce){.htxt,.hcar{animation:none}}
+.hfoot{position:absolute;z-index:3;inset-inline:0;bottom:30px;direction:ltr}
+.hfoot .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:0}
+.scrl{display:flex;gap:12px;align-items:center;color:#b9b7b0;font-size:13px;background:none;border:0}
+.scrl b{width:20px;height:32px;border:1px solid #b9b7b0;border-radius:11px;position:relative}.scrl b::after{content:"";position:absolute;left:8px;top:6px;width:2px;height:6px;background:var(--g)}
+.pg{display:flex;gap:18px;align-items:center;font-family:var(--s);font-size:18px}
+.pg button{background:none;border:0;color:var(--w);width:34px;height:34px}.pg button:hover{color:var(--g)}.pg svg{width:18px;height:18px}
+.pgl{display:flex;gap:6px;position:absolute;inset-inline-start:50%;transform:translateX(-50%);direction:ltr}
+.pgl i{width:56px;height:2px;background:rgba(245,244,240,.2)}.pgl i.on{background:var(--g)}
+section{padding:96px 0}.alt{background:var(--c)}
+.head{display:flex;justify-content:space-between;align-items:end;margin-bottom:40px;gap:16px;flex-wrap:wrap}
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{position:relative;background:#1a1c1f;border:1px solid var(--ln);border-radius:14px;overflow:hidden;transition:.3s}
+.card:hover{border-color:rgba(180,154,114,.5);transform:translateY(-3px)}
+.pic{position:relative;cursor:pointer;padding:34px 20px 6px;background:radial-gradient(70% 70% at 50% 70%,#2a2d31,#15171a)}
+.pic .car{transition:transform .6s}.card:hover .pic .car{transform:scale(1.05)}
+.cb{position:absolute;top:12px;background:none;border:0;color:#d4d2cb;width:32px;height:32px;padding:6px;transition:.2s}
+.cb svg{width:100%;height:100%}.cb:hover,.cb.on{color:var(--g)}.cb.on svg{fill:var(--g)}
+.cb.h{inset-inline-start:10px}.cb.z{inset-inline-end:10px}
+.cinfo{display:flex;justify-content:space-between;align-items:center;padding:16px 20px 8px;cursor:pointer}
+.cinfo h3{font-size:17px;font-weight:600;direction:ltr;text-align:left}.cinfo .sp{font-size:12px;color:#8c8a84;direction:ltr;text-align:left;margin-top:2px}
+.cinfo svg{width:18px;height:18px;color:#b9b7b0}
+.cft{display:flex;justify-content:space-between;align-items:center;padding:6px 20px 16px;font-size:13px}
+.price{font-family:var(--s);font-size:20px;font-weight:600;color:var(--g);direction:ltr}
+.chk{display:flex;gap:7px;align-items:center;color:#8c8a84;cursor:pointer}.chk input{accent-color:var(--g);width:15px;height:15px}
+.tools{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px;align-items:center}
+.tools input,.tools select{background:#1a1c1f;border:1px solid var(--ln);border-radius:99px;padding:10px 20px;min-width:0}
+.tools input{flex:1;min-width:200px}.tools input:focus,.tools select:focus{outline:1px solid var(--g)}
+.tools select option{background:var(--k)}
+.chip{background:#1a1c1f;border:1px solid var(--ln);border-radius:99px;padding:7px 24px;font-size:14px;color:#c9c7c0;transition:.2s}
+.chip.on,.chip:hover{background:var(--g);border-color:var(--g);color:var(--k);font-weight:600}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.page{padding:60px 0 110px;min-height:72vh}
+.empty{text-align:center;padding:70px 20px;color:#8c8a84;border:1px solid var(--ln);border-radius:14px}
+/* category + features */
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cat{background:#1a1c1f;border:1px solid var(--ln);border-radius:14px;padding:30px 24px;text-align:start;transition:.3s}
+.cat:hover{border-color:var(--g)}.cat i{font-style:normal;font-family:var(--s);color:var(--g);letter-spacing:.2em}
+.cat b{display:block;font-size:20px;font-weight:600;margin:40px 0 0}.cat span{font-size:13px;color:#8c8a84}
+.feats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.feat{padding:28px 0;border-top:1px solid var(--g)}.feat b{display:block;font-weight:600;font-size:17px;margin-bottom:4px}.feat span{font-size:14px;color:#9d9b95}
+/* 360 + compare */
+.v360{text-align:center}
+.stage{position:relative;max-width:820px;margin:30px auto 0;padding:20px 60px 10px;touch-action:pan-y;cursor:grab;user-select:none;background:radial-gradient(60% 60% at 50% 60%,#2a2d31,transparent)}
+.ring{position:absolute;inset-inline:12%;bottom:22%;height:18%;border:1px solid rgba(245,244,240,.35);border-radius:50%}
+.arw{position:absolute;top:44%;width:42px;height:42px;border:1px solid var(--ln);border-radius:50%;background:rgba(17,19,21,.6);display:grid;place-items:center}
+.arw svg{width:16px;height:16px}.arw:hover{border-color:var(--g);color:var(--g)}
+.ctl{display:flex;gap:14px;align-items:center;justify-content:center;margin-top:10px}
+.prog{width:160px;height:2px;background:var(--ln)}.prog i{display:block;height:100%;background:var(--g);transition:.3s}
+.cslots{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:900px;margin:30px auto 24px}
+.slot{background:#1a1c1f;border:1px solid var(--ln);border-radius:12px;min-height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;position:relative;font-size:13px;gap:4px}
+.slot .car{max-width:150px}.slot.add{border-style:dashed;color:#b9b7b0}.slot.add:hover{border-color:var(--g);color:var(--g)}
+.slot .x{position:absolute;top:6px;inset-inline-start:8px;background:none;border:0;color:#8c8a84;font-size:14px}
+/* detail */
+.crumb{font-size:12px;color:#8c8a84;padding:20px 0 0}.crumb button{background:none;border:0;color:#8c8a84;padding:0}.crumb button:hover{color:var(--g)}
+.det{display:grid;grid-template-columns:7fr 5fr;gap:50px;align-items:center;direction:ltr;padding:20px 0 40px}
+.det>*{direction:rtl}
+.dstage{background:radial-gradient(70% 70% at 50% 65%,#2a2d31,#15171a);border-radius:14px;padding:30px 20px 6px}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.th{background:#1a1c1f;border:1px solid var(--ln);border-radius:8px;padding:6px;transition:.2s}.th.on,.th:hover{border-color:var(--g)}
+.dinfo h1{font-size:clamp(32px,3.6vw,48px);direction:ltr;text-align:right;font-weight:600}
+.tg{font-family:var(--s);font-size:20px;color:#c9c7c0;direction:ltr;text-align:right;margin:2px 0 22px}
+.sps{margin:28px 0}.sps div{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--ln)}
+.sps b{font-size:20px;font-weight:600;display:block}.sps span{font-size:12px;color:#8c8a84}.sps svg{width:26px;height:26px;color:var(--g)}
+.sw{display:flex;gap:10px;margin:10px 0 4px}.sw button{width:24px;height:24px;border-radius:50%;border:2px solid var(--k);outline:1px solid #666;padding:0}.sw button.on{outline-color:var(--g);outline-offset:2px}
+.tabs{display:flex;gap:30px;border-bottom:1px solid var(--ln);overflow-x:auto}
+.tab{background:none;border:0;padding:14px 4px;color:#8c8a84;white-space:nowrap;position:relative}.tab.on{color:var(--g)}.tab.on::after{content:"";position:absolute;inset-inline:0;bottom:-1px;height:2px;background:var(--g)}
+.tp{padding:34px 0;max-width:820px}.tp p{color:#c9c7c0;margin:0 0 20px}
+.dl div{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--ln)}.dl span{color:#8c8a84}
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:none}
+.gal div{background:#1a1c1f;border-radius:10px;padding:14px}
+.rv{border-bottom:1px solid var(--ln);padding:14px 0}.rv b{color:var(--g);font-weight:600}
+.cmpbar{position:fixed;inset-inline:0;bottom:0;z-index:40;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:rgba(17,19,21,.96);border-top:1px solid var(--g);display:flex;justify-content:center;gap:16px;align-items:center;flex-wrap:wrap;font-size:14px}
+.cmpbar .btn{padding:7px 24px}.rm{background:none;border:0;color:var(--g);font-size:12px}
+.scroll{overflow-x:auto;border:1px solid var(--ln);border-radius:12px;background:#1a1c1f}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{padding:18px 20px;text-align:start;border-bottom:1px solid var(--ln);font-size:15px}
+th{background:var(--c);font-weight:600}td.best{color:var(--g);font-weight:600;background:rgba(180,154,114,.08)}td:first-child{color:#8c8a84;width:140px}
+footer{border-top:1px solid var(--ln);color:#8c8a84;padding:48px 0;font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+@media(max-width:900px){
+.wrap{padding:0 20px}
+.grid{grid-template-columns:repeat(2,1fr);gap:14px}
+.cats,.feats{grid-template-columns:repeat(2,1fr);gap:14px}
+.hero{min-height:auto;display:block;padding-bottom:90px}
+.hero::after{background:linear-gradient(0deg,rgba(13,14,16,.9),rgba(13,14,16,.1) 70%)}
+.hero .wrap{grid-template-columns:1fr;padding-top:100px}
+.hcar{order:-1;transform:none;margin:0 -20px}
+.htxt{max-width:none;padding-top:10px}
+.hfoot{bottom:20px}.scrl span,.pgl{display:none}
+.det{grid-template-columns:1fr;gap:24px}.dinfo h1,.tg{text-align:right}
+.cslots{grid-template-columns:repeat(2,1fr)}
+.stage{padding:20px 14px 6px}.arw{top:38%}
+.gal{grid-template-columns:1fr}
+.burger{display:grid}
+nav{display:none;position:absolute;top:76px;inset-inline:0;background:var(--k);flex-direction:column;padding:10px 20px 18px;border-bottom:1px solid var(--ln)}
+nav.open{display:flex}nav button{text-align:start;padding:12px 0}nav button.on::after{display:none}
+section{padding:60px 0}
+}
+@media(max-width:520px){.grid{grid-template-columns:1fr}}
+:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+.im{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+.ph{aspect-ratio:16/10;display:grid;place-content:center;gap:2px;text-align:center;background:#1a1c1f;border:1px dashed rgba(180,154,114,.35);color:#8c8a84}
+.ph b{font-family:var(--s);font-size:22px;letter-spacing:.12em;color:#c9c7c0;font-weight:500}.ph small{font-size:12px}
+.pic{padding:0;overflow:hidden;background:#15171a}.pic .im{transition:transform .6s}.card:hover .pic .im{transform:scale(1.04)}
+.cinfo:hover h3{color:var(--g)}
+.hero{min-height:min(100vh,780px)}
+.hbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 50%;animation:in 1.2s ease both}
+.hero::after{background:linear-gradient(90deg,rgba(13,14,16,.9),rgba(13,14,16,.25) 62%,rgba(13,14,16,.1)),linear-gradient(0deg,rgba(13,14,16,.7),transparent 30%)}
+.hero .wrap.hw{display:flex;justify-content:flex-start;align-items:center;gap:40px;direction:ltr;grid-template-columns:none}
+.hempty{margin-inline-start:auto;direction:rtl;text-align:center;border:1px dashed rgba(180,154,114,.4);padding:30px 34px;border-radius:14px;max-width:340px;color:#b9b7b0;background:rgba(17,19,21,.6)}
+.hempty p{margin:0 0 16px}
+.v3{position:relative;max-width:900px;margin:26px auto 0;background:#15171a;border:1px solid var(--ln);border-radius:14px;overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.v3.dg{cursor:grabbing}.v3 .im{pointer-events:none}.v3 .arw{position:absolute;top:calc(50% - 21px);z-index:2}
+.v3b{position:absolute;inset-inline:0;bottom:0;display:flex;gap:14px;align-items:center;justify-content:center;padding:10px;background:rgba(17,19,21,.7);font-size:13px;direction:ltr}
+.v3b .prog{width:min(220px,40%)}
+.empty3{cursor:default;padding:60px 24px;text-align:center}.empty3 p{margin:0 0 8px}
+.mrow{display:grid;grid-template-columns:150px 1fr 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--ln)}
+.mth{display:flex;gap:6px;margin:8px 0 10px;min-height:42px;flex-wrap:wrap}.mth img{width:68px;height:42px;object-fit:cover;border-radius:4px}
+.btn.sm{padding:7px 18px;font-size:13px;cursor:pointer}
+.slot .im{aspect-ratio:16/10;max-width:170px;border-radius:6px}.slot .ph{width:100%;max-width:170px}
+.toast{position:fixed;bottom:84px;inset-inline:0;margin:auto;width:max-content;max-width:90%;background:var(--c);border:1px solid var(--g);padding:10px 22px;border-radius:99px;font-size:14px;z-index:60;transition:opacity .25s;pointer-events:none;text-align:center}
+.gal div{padding:0;overflow:hidden}
+.th{padding:0;overflow:hidden}.th .ph{display:none}
+.dstage{padding:0;overflow:hidden}
+@media(max-width:900px){
+.hero{min-height:620px;display:flex;align-items:flex-end}
+.hero .wrap.hw{padding-top:120px;padding-bottom:110px;flex-direction:column;align-items:stretch}
+.hero::after{background:linear-gradient(0deg,rgba(13,14,16,.95),rgba(13,14,16,.35) 70%,rgba(13,14,16,.5))}
+.hempty{margin:0;max-width:none}
+.mrow{grid-template-columns:1fr}
+.v3 .arw{width:36px;height:36px}
+}
+.mtb{position:relative;display:inline-block}.mtb button,.mtb label{position:absolute;top:2px;font-size:11px;background:rgba(17,19,21,.85);border:0;color:var(--w);width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;cursor:pointer;padding:0}.mtb button{inset-inline-end:2px}.mtb label{inset-inline-start:2px}.mth img{display:block}
+.im,.ph{aspect-ratio:16/9;object-fit:contain}.im{mix-blend-mode:multiply}
+.pic,.dstage,.th,.gal div,.v3{background:#F5F4F0}.pic .ph,.dstage .ph{background:#1a1c1f}
+.slot .im{mix-blend-mode:normal;background:#F5F4F0}
+.cats{grid-template-columns:repeat(2,1fr)}
+.hero{min-height:min(84vh,660px)}.hero::after{display:none}
+.hero .wrap.hw{padding-top:30px}
+.hstudio{position:absolute;top:0;bottom:0;right:0;width:64%;background:#F5F4F0;display:grid;place-items:center}
+.hstudio .hbg{position:static;width:100%;height:auto;object-fit:contain;mix-blend-mode:multiply;animation:in 1s ease both}
+.hfoot .pg,.hfoot .pg button{color:var(--k)}.scrl{color:#b9b7b0}
+@media(max-width:900px){
+.hero{display:block;min-height:0;padding-bottom:0}
+.hstudio{position:relative;width:100%}
+.hero .wrap.hw{padding-top:26px;padding-bottom:84px}
+.hfoot .pg,.hfoot .pg button{color:var(--w)}
+.cats{grid-template-columns:1fr}
+}
+
+.im{mix-blend-mode:normal}
+.pic,.dstage{background:radial-gradient(70% 60% at 50% 78%,#2a2d31,#15171a)}
+.th,.gal div{background:#1a1c1f}.v3{background:#15171a}
+.slot .im{background:none}
+.hfoot .pg,.hfoot .pg button{color:var(--w)}
+.hcar{flex:0 1 auto;width:min(50vw,700px);margin-inline-start:auto;animation:in 1s ease both}
+.hcar .im{width:100%;height:auto;max-width:100%}
+@media(max-width:900px){.hcar{order:-1;width:min(100%,520px);margin:0 auto}}
+
+.spx{margin:26px 0 30px;border-top:1px solid var(--ln)}
+.sr{display:grid;grid-template-columns:120px 1fr 34px;align-items:center;gap:0 18px;padding:20px 0;border-bottom:1px solid var(--ln)}
+.sl{font-size:16px;font-weight:400;color:#c9c7c0;line-height:1.5}
+.sv{display:flex;align-items:baseline;gap:8px;min-width:0}
+.sv b{font-size:clamp(32px,3.4vw,44px);font-weight:600;line-height:1.1;letter-spacing:-.01em}
+.sv em{font-style:normal;font-size:16px;font-weight:400;color:var(--g);direction:ltr;unicode-bidi:isolate}
+.sv.tx b{font-size:clamp(20px,2vw,24px);line-height:1.4;font-weight:600}
+.sr svg{width:30px;height:30px;color:var(--g);justify-self:end}
+@media(max-width:520px){.sr{grid-template-columns:1fr 34px;grid-template-areas:"l i" "v i";gap:4px 14px;padding:16px 0}.sl{grid-area:l;font-size:15px}.sv{grid-area:v}.sr svg{grid-area:i}.sv b{font-size:clamp(28px,9vw,36px)}}
+.price{font-variant-numeric:lining-nums;letter-spacing:.01em}
+
+.pickbar{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid var(--g);border-radius:12px;padding:12px 18px;margin-bottom:22px;background:rgba(180,154,114,.08);font-size:14px}
+.cslots{grid-template-columns:repeat(3,1fr);max-width:900px}
+@media(max-width:600px){.cslots{grid-template-columns:1fr}}
+
+.fpanel{display:grid;grid-template-columns:repeat(5,1fr) auto;gap:12px;align-items:end;background:#1a1c1f;border:1px solid var(--ln);border-radius:12px;padding:16px;margin-bottom:22px}
+.fpanel label{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#b9b7b0}
+.fpanel select,.fpanel input{background:var(--k);border:1px solid var(--ln);border-radius:8px;padding:9px 12px;color:var(--w);min-width:0;width:100%}
+.fpanel select option{background:var(--k)}
+@media(max-width:900px){.fpanel{grid-template-columns:1fr 1fr}.fpanel .rm{justify-self:start}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.js"></script>
+<script>
+const {useState,useEffect,useMemo,useRef}=React;
+const html=htm.bind(React.createElement);
+const fmt=n=>n.toLocaleString('fa-IR');
+const money=n=>'$'+n.toLocaleString('en-US');
+const CATS=['اسپرت','سوپراسپرت'];
+const CARS=[
+{id:'f296',n:'Ferrari 296 GTB',tg:'Hybrid heartbeat.',c:'سوپراسپرت',p:322000,hp:819,s:2.9,t:330,e:'V6 توئین‌توربو پلاگین‌هیبرید',y:2022,seats:2,d:'ابرخودروی هیبرید پلاگین با موتور V6 توئین‌توربو و موتور الکتریکی؛ ترکیبی از شتاب بی‌وقفه و صدایی فراموش‌نشدنی.'},
+{id:'p911',n:'Porsche 911',tg:'The legend, evolved.',c:'اسپرت',p:135000,hp:443,s:3.5,t:308,e:'فلت‌ سیکس توئین‌توربو',y:2023,seats:4,d:'نماد کوپه‌های اسپرت با موتور شش‌سیلندر تخت در عقب؛ دقت بالا در فرمان و کاربردی‌بودن در استفاده روزمره.'},
+{id:'m4',n:'BMW M4 Competition',tg:'Born on the track.',c:'اسپرت',p:85000,hp:503,s:3.9,t:250,e:'شش‌سیلندر خطی توئین‌توربو',y:2022,seats:4,d:'کوپه‌ی پرقدرت با موتور شش‌سیلندر خطی توئین‌توربو و شاسی تنظیم‌شده برای پیست و جاده.'},
+{id:'amg',n:'Mercedes-AMG GT',tg:'Handcrafted power.',c:'اسپرت',p:118000,hp:469,s:4.0,t:304,e:'V8 بای‌توربو',y:2021,seats:2,d:'گرن‌تورر دونفره با موتور V8 بای‌توربو و موتور جلو؛ حضوری قدرتمند و رانندگی پرحس.'},
+{id:'supra',n:'Toyota GR Supra',tg:'Pure driving focus.',c:'اسپرت',p:57000,hp:382,s:3.9,t:250,e:'شش‌سیلندر خطی توربو',y:2023,seats:2,d:'کوپه‌ی عقب‌محرک با موتور شش‌سیلندر خطی توربو؛ تعادل دقیق و فرمان‌پذیری مستقیم.'},
+{id:'r8',n:'Audi R8 V10 plus',tg:'Everyday supercar.',c:'سوپراسپرت',p:187000,hp:602,s:3.2,t:330,e:'V10 تنفس طبیعی',y:2017,seats:2,d:'ابرخودروی موتور‌میانی با موتور V10 و چهارچرخ محرک؛ قدرتی که رانندگی‌اش آسان و قابل‌اعتماد است.'},
+{id:'huracan',n:'Lamborghini Huracán',tg:'Raw emotion.',c:'سوپراسپرت',p:240000,hp:602,s:3.2,t:325,e:'V10 تنفس طبیعی',y:2015,seats:2,d:'ابرخودروی موتور‌میانی با V10 و چهارچرخ محرک؛ طراحی تهاجمی و صدایی متمایز.'},
+{id:'m720s',n:'McLaren 720S',tg:'Lightweight, relentless.',c:'سوپراسپرت',p:285000,hp:710,s:2.9,t:341,e:'V8 توئین‌توربو',y:2018,seats:2,d:'ابرخودروی سبک با شاسی کربنی و موتور V8 توئین‌توربو؛ شتاب و فرمان‌پذیری در سطح بالا.'}
+];
+const BR={f296:'Ferrari',p911:'Porsche',m4:'BMW',amg:'Mercedes-AMG',supra:'Toyota',r8:'Audi',huracan:'Lamborghini',m720s:'McLaren'};CARS.forEach(c=>{c.br=BR[c.id]});
+const nd=v=>v.replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[^\d]/g,'');
+const BEST={p:-1,hp:1,s:-1,t:1};
+
+const IC={heart:'M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z',search:'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5',arrow:'M5 12h14M13 6l6 6-6 6',left:'M19 12H5M11 6l-6 6 6 6',menu:'M4 7h16M4 12h16M4 17h16',bolt:'M13 2L4 14h7l-1 8 10-13h-7z',clock:'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2',speed:'M4 17a9 9 0 1 1 16 0M12 15l4-5',gear:'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM12 2v3M12 19v3M2 12h3M19 12h3'};
+const Ic=({n,f})=>html`<svg viewBox="0 0 24 24" fill=${f?'currentColor':'none'} stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d=${IC[n]}/></svg>`;
+
+Object.assign(IC,{plus:'M12 5v14M5 12h14',cam:'M4 8h3l2-3h6l2 3h3v11H4zM12 11a3 3 0 1 0 0 6 3 3 0 0 0 0-6z'});
+/* ---- مدیریت تصاویر: عکس‌ها در IndexedDB مرورگر کاربر ذخیره می‌شوند ---- */
+const EMB=/*EMB*/{f296:{photos:['ed52707fdaf72101bf2651d4576a011a']},p911:{photos:['e025f0d5bdc555ed3033c9b74c7d7b7e']},m4:{photos:['730da519e654482ae211bff1c228f35d']},amg:{photos:['93bfcb66ae88b9c2c62cc2ad8b6109b7']},supra:{photos:['86adc70e598d1a9e207f3bf12cb0e4be']},r8:{photos:['cc898a5816ccf9853ee35776f87433e3']},huracan:{photos:['bc7c07a6644e61c60b4f4c304cc4b413']},m720s:{photos:['957da6076d71f696d7031a6404fd2f6f']}};
+let MEDIA={...EMB};
+const U=s=>s.includes('/')?s:'/_blob/'+s;
+const ph=c=>((MEDIA[c.id]||{}).photos||[]).map(U);
+const fr=c=>((MEDIA[c.id]||{}).frames||[]).map(U);
+const RT={db:null,assets:null,user:null};
+const toBlob=(f,max)=>new Promise(res=>{const u=URL.createObjectURL(f),i=new Image();i.onload=()=>{const k=Math.min(1,max/i.width),c=document.createElement('canvas');c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);c.getContext('2d').drawImage(i,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(b=>res(b),'image/jpeg',.86)};i.onerror=()=>res(null);i.src=u});
+function Pic({c,i=0,eager}){
+  const p=ph(c)[i];
+  return p?html`<img class="im" src=${p} alt=${c.n+' – تصویر '+fmt(i+1)} loading=${eager?'eager':'lazy'} draggable="false"/>`
+  :html`<div class="ph" role="img" aria-label=${'تصویر '+c.n+' بارگذاری نشده'}><b>${c.n}</b><small>تصویر بارگذاری نشده</small></div>`;
+}
+/* نمایشگر ۳۶۰ درجه: دنباله‌ای از عکس‌های واقعی؛ کشیدن با ماوس/لمس، لختی نرم، کلیدهای جهت، پخش خودکار */
+function V360({c,go}){
+  const f=fr(c),n=f.length;
+  const [idx,setIdx]=useState(0),[auto,setAuto]=useState(false),[dg,setDg]=useState(false);
+  const s=useRef({a:0,v:0,d:false,x:0,t:0,auto:false,n:0});
+  s.current.n=n;s.current.auto=auto;
+  useEffect(()=>{s.current.a=0;setIdx(0);f.forEach(u=>{const i=new Image();i.src=u})},[c.id,n]);
+  useEffect(()=>{if(n<2)return;let raf,last=performance.now();
+    const tick=t=>{const S=s.current,dt=Math.min(50,t-last);last=t;
+      if(!S.d){if(Math.abs(S.v)>0.002){S.a+=S.v*dt;S.v*=0.94}else{S.v=0;if(S.auto)S.a+=0.006*dt}}
+      setIdx(((Math.round(S.a)%n)+n)%n);raf=requestAnimationFrame(tick)};
+    raf=requestAnimationFrame(tick);return()=>cancelAnimationFrame(raf)},[c.id,n]);
+  if(n<2)return html`<div class="v3 empty3"><p><b>${c.n}</b> هنوز فریم ۳۶۰ درجه ندارد.</p><p class="muted">برای چرخش واقعی، ۲۴ تا ۷۲ عکس از دور تا دور خودرو (با زاویه‌های یکنواخت) لازم است.</p><button class="btn" onClick=${()=>go('media')}><${Ic} n="cam"/>بارگذاری فریم‌ها</button></div>`;
+  const dn=e=>{const S=s.current;S.d=true;S.x=e.clientX;S.t=performance.now();S.v=0;setDg(true);e.currentTarget.setPointerCapture(e.pointerId)};
+  const mv=e=>{const S=s.current;if(!S.d)return;const now=performance.now(),dx=e.clientX-S.x,w=e.currentTarget.getBoundingClientRect().width;S.a-=dx*S.n/(w*1.1);S.v=-dx*S.n/(w*1.1)/Math.max(8,now-S.t);S.x=e.clientX;S.t=now};
+  const up=()=>{s.current.d=false;setDg(false)};
+  const step=d=>{s.current.a=Math.round(s.current.a)+d;s.current.v=0};
+  const stop=e=>e.stopPropagation();
+  return html`<div class=${'v3'+(dg?' dg':'')} tabindex="0" role="group" aria-label=${'نمای ۳۶۰ درجه '+c.n+'؛ با کشیدن یا کلیدهای جهت بچرخانید'} onPointerDown=${dn} onPointerMove=${mv} onPointerUp=${up} onPointerCancel=${up} onKeyDown=${e=>{if(e.key==='ArrowLeft')step(-1);if(e.key==='ArrowRight')step(1)}}>
+    <img class="im" src=${f[idx]} alt=${c.n+' – زاویه '+fmt(idx+1)+' از '+fmt(n)} draggable="false"/>
+    <button class="arw" style=${{insetInlineStart:10}} aria-label="چرخش به راست" onPointerDown=${stop} onClick=${()=>step(1)}><${Ic} n="arrow"/></button>
+    <button class="arw" style=${{insetInlineEnd:10}} aria-label="چرخش به چپ" onPointerDown=${stop} onClick=${()=>step(-1)}><${Ic} n="left"/></button>
+    <div class="v3b" onPointerDown=${stop}><button class="ib" aria-pressed=${auto} aria-label=${auto?'توقف':'پخش خودکار'} onClick=${()=>setAuto(!auto)}>${auto?'❚❚':'▶'}</button><div class="prog"><i style=${{width:((idx+1)/n*100)+'%'}}></i></div><span>${fmt(idx+1)} / ${fmt(n)}</span></div></div>`;
+}
+const loadFav=()=>{try{return JSON.parse(localStorage.getItem('velox-fav')||'[]')}catch(e){return[]}};
+const HT=[['قدرت،','در اوج','زیبایی','تجربه رانندگی متفاوت با خودروهای لوکس جهان'],['فضا،','در اوج','آرامش','شاسی‌بلندی که سفر را بی‌دغدغه می‌کند'],['آینده،','در','سکوت','برقی، دقیق و بی‌زمان؛ طراحی‌شده برای فردا']];
+const TABS=['معرفی خودرو','مشخصات فنی','گالری تصاویر','نمای ۳۶۰°','نظرات کاربران'];
+const REV=[['سارا م.','کابین فوق‌العاده آرام و کیفیت مواد عالی است.'],['کامران ر.','هندلینگ دقیق و پاسخ‌دهی عالی؛ ارزش خرید دارد.'],['نیما ع.','طراحی ساده و باشکوه؛ دقیقاً همان چیزی که می‌خواستم.']];
+function App(){
+  const [route,setRoute]=useState(location.hash.slice(1)||'home');
+  const [q,setQ]=useState(''),[cat,setCat]=useState('همه'),[sort,setSort]=useState('new');
+  const [favs,setFavs]=useState(loadFav),[cmp,setCmp]=useState([]),[menu,setMenu]=useState(false),[view,setView]=useState(0),[tab,setTab]=useState(0);
+  const [hs,setHs]=useState(0),[sel,setSel]=useState('f296'),[,setTick]=useState(0),[toast,setToast]=useState(''),[pick,setPick]=useState(null),[fl,setFl]=useState({br:'',yf:'',yt:'',pmin:'',pmax:''}),[showF,setShowF]=useState(false);
+  const setF=(k,v)=>setFl(f=>({...f,[k]:v}));const nF=Object.values(fl).filter(Boolean).length;const resetF=()=>setFl({br:'',yf:'',yt:'',pmin:'',pmax:''});
+  const say=m=>{setToast(m);clearTimeout(window.__t);window.__t=setTimeout(()=>setToast(''),2600)};
+  const bump=()=>setTick(x=>x+1);
+  const [rt,setRt]=useState({ready:false,edit:false,assets:false,db:false});
+  const save=async()=>{bump();try{await RT.db.doc('manifest/main').set({m:MEDIA});return true}catch(e){say('ذخیره فهرست تصاویر ناموفق بود');return false}};
+  useEffect(()=>{let off=()=>{};(async()=>{
+    try{if(!window.claude)throw 0;
+      const [db,assets,user]=await Promise.all([claude.use('db'),claude.use('assets'),claude.use('user')]);
+      RT.db=db;RT.assets=assets;RT.user=user;
+      if(db)off=db.doc('manifest/main').onSnapshot(s=>{const d=s.exists&&s.data();if(d&&d.m){MEDIA={...EMB,...d.m};bump()}},()=>{});
+      setRt({ready:true,edit:!!(user&&user.canEdit()),assets:!!assets,db:!!db});
+    }catch(e){setRt(r=>({...r,ready:true}))}})();return()=>off()},[]);
+  useEffect(()=>{const h=()=>{setRoute(location.hash.slice(1)||'home');setMenu(false);setView(0);setTab(0);window.scrollTo(0,0)};window.addEventListener('hashchange',h);return()=>window.removeEventListener('hashchange',h)},[]);
+  useEffect(()=>{try{localStorage.setItem('velox-fav',JSON.stringify(favs))}catch(e){}},[favs]);
+  useEffect(()=>{if(route!=='home')return;const t=setInterval(()=>setHs(x=>x+1),7000);return()=>clearInterval(t)},[route,hs]);
+  const go=r=>{location.hash=r};
+  const toggleFav=c=>{const on=favs.includes(c.id);setFavs(f=>on?f.filter(x=>x!==c.id):[...f,c.id]);say(on?c.n+' از علاقه‌مندی‌ها حذف شد':c.n+' به علاقه‌مندی‌ها افزوده شد')};
+  const toggleCmp=c=>{if(cmp.includes(c.id)){setCmp(cmp.filter(x=>x!==c.id));say(c.n+' از مقایسه حذف شد')}else if(cmp.length>=3)say('حداکثر سه خودرو را می‌توان مقایسه کرد');else{setCmp([...cmp,c.id]);say(c.n+' به مقایسه افزوده شد')}};
+  const canEdit=rt.edit&&rt.assets&&rt.db;
+  const dropAssets=ids=>ids.filter(x=>x&&!x.includes('/')).forEach(x=>RT.assets.delete(x).catch(()=>{}));
+  const put=async(c,kind,files,at)=>{
+    if(!canEdit||!files.length)return;say('در حال بارگذاری…');
+    const fs=[...files].sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true}));const ids=[];
+    try{for(const f of fs){const b=await toBlob(f,kind==='frames'?1280:1800);if(!b)continue;const r=await RT.assets.upload(b);ids.push(r.id)}}catch(e){say('بارگذاری ناموفق بود');return}
+    if(!ids.length){say('فایل تصویری معتبر نبود');return}
+    const o=MEDIA[c.id]||{},old=o[kind]||[];let next,drop=[];
+    if(kind==='frames'){next=ids;drop=old}else if(at!=null){next=old.slice();drop=[old[at]];next[at]=ids[0]}else next=[...old,...ids];
+    MEDIA={...MEDIA,[c.id]:{...o,[kind]:next}};
+    if(await save()){say(fmt(ids.length)+' تصویر برای '+c.n+' ذخیره شد');dropAssets(drop)}};
+  const remove=async(c,kind,i)=>{if(!canEdit)return;const o=MEDIA[c.id]||{},old=o[kind]||[],drop=i==null?old:[old[i]];
+    MEDIA={...MEDIA,[c.id]:{...o,[kind]:i==null?[]:old.filter((_,k)=>k!==i)}};
+    if(await save()){say('حذف شد');dropAssets(drop)}};
+  const exportM=async()=>{try{const d=await claude.use('downloads');await d.save({filename:'manifest.json',data:JSON.stringify(MEDIA,null,2)})}catch(e){say('دریافت فایل ممکن نشد')}};
+  const startPick=back=>{setPick({back});go('catalog');window.scrollTo(0,0)};
+  const choose=c=>{const b=(pick&&pick.back)||'home';setPick(null);
+    if(cmp.includes(c.id))say(c.n+' قبلاً به مقایسه افزوده شده است');else if(cmp.length>=3)say('حداکثر سه خودرو را می‌توان مقایسه کرد');else{setCmp([...cmp,c.id]);say(c.n+' به مقایسه افزوده شد')}
+    go(b);setTimeout(()=>{if(b==='home'){const e=document.getElementById('cmpsec');if(e)e.scrollIntoView({block:'center'})}},250)};
+  const open=c=>pick?choose(c):go('car-'+c.id);
+  useEffect(()=>{if(route!=='catalog')setPick(null)},[route]);
+  const list=useMemo(()=>{
+    let r=CARS.filter(x=>(cat==='همه'||x.c===cat)&&(x.n+x.c+x.e).toLowerCase().includes(q.trim().toLowerCase())&&(!fl.br||x.br===fl.br)&&(!fl.yf||x.y>=+fl.yf)&&(!fl.yt||x.y<=+fl.yt)&&(!fl.pmin||x.p>=+fl.pmin)&&(!fl.pmax||x.p<=+fl.pmax));
+    if(sort==='pa')r=[...r].sort((a,b)=>a.p-b.p);if(sort==='pd')r=[...r].sort((a,b)=>b.p-a.p);if(sort==='hp')r=[...r].sort((a,b)=>b.hp-a.hp);
+    return r;
+  },[q,cat,sort,fl]);
+  const card=c=>html`<article class="card" key=${c.id}>
+    <div class="pic" onClick=${()=>open(c)}><${Pic} c=${c}/>
+      <button class=${'cb h'+(favs.includes(c.id)?' on':'')} aria-pressed=${favs.includes(c.id)} aria-label=${'علاقه‌مندی '+c.n} onClick=${e=>{e.stopPropagation();toggleFav(c)}}><${Ic} n="heart"/></button></div>
+    <div class="cinfo" onClick=${()=>open(c)} role="link" tabindex="0" onKeyDown=${e=>{if(e.key==='Enter')open(c)}}><div><h3>${c.n}</h3><div class="sp">${c.hp} HP · ${c.s}s 0-100</div></div><${Ic} n="arrow"/></div>
+    <div class="cft"><span class="price">${money(c.p)}</span><label class="chk"><input type="checkbox" checked=${cmp.includes(c.id)} onChange=${()=>toggleCmp(c)}/>مقایسه</label></div></article>`;
+  const nav=[['home','خانه'],['catalog','خودروها'],['favs','علاقه‌مندی‌ها'],['compare','مقایسه'],['media','تصاویر']];
+  const car=CARS.find(x=>route==='car-'+x.id);
+  const base=route.startsWith('car-')?'catalog':route;
+  let page;
+  if(car){
+    const P=ph(car);
+    const sp=[['قدرت',fmt(car.hp),'hp','bolt'],['شتاب ۰–۱۰۰',fmt(car.s),'s','clock'],['حداکثر سرعت',fmt(car.t),'km/h','speed'],['پیشرانه',car.e,'','gear']];
+    const all=[['قدرت',fmt(car.hp)+' hp'],['شتاب ۰–۱۰۰',fmt(car.s)+' ثانیه'],['سرعت نهایی',fmt(car.t)+' km/h'],['پیشرانه',car.e],['ظرفیت',fmt(car.seats)+' نفر'],['مدل',fmt(car.y)],['قیمت',money(car.p)]];
+    page=html`<div class="wrap"><div class="crumb"><button onClick=${()=>go('home')}>خانه</button> › <button onClick=${()=>go('catalog')}>خودروها</button> › ${car.n}</div>
+      <div class="det"><div><div class="dstage"><${Pic} c=${car} i=${view} eager=${true}/></div>
+        ${P.length>1?html`<div class="thumbs">${P.slice(0,5).map((_,i)=>html`<button key=${i} class=${'th'+(view===i?' on':'')} aria-label=${'تصویر '+fmt(i+1)} aria-current=${view===i} onClick=${()=>setView(i)}><${Pic} c=${car} i=${i}/></button>`)}</div>`:null}
+        ${!P.length?html`<p class="muted" style=${{marginTop:12}}><button class="rm" onClick=${()=>go('media')}>افزودن تصویر برای ${car.n} ←</button></p>`:null}</div>
+        <div class="dinfo"><h1>${car.n}</h1><div class="tg">${car.tg}</div>
+          <div class="spx" role="list">${sp.map(s=>html`<div class="sr" role="listitem" key=${s[0]}><span class="sl">${s[0]}</span><span class=${'sv'+(s[2]?'':' tx')}><b>${s[1]}</b>${s[2]?html`<em>${s[2]}</em>`:null}</span><${Ic} n=${s[3]}/></div>`)}</div>
+          <div style=${{display:'flex',gap:12,flexWrap:'wrap'}}><button class="btn" aria-pressed=${favs.includes(car.id)} onClick=${()=>toggleFav(car)}><${Ic} n="heart" f=${favs.includes(car.id)}/>${favs.includes(car.id)?'در علاقه‌مندی‌ها':'افزودن به علاقه‌مندی‌ها'}</button>
+          <button class="btn ghost" onClick=${()=>{if(!cmp.includes(car.id))toggleCmp(car);go('compare')}}>مقایسه</button></div></div></div>
+      <div class="tabs" role="tablist">${TABS.map((t,i)=>html`<button key=${i} role="tab" aria-selected=${tab===i} class=${'tab'+(tab===i?' on':'')} onClick=${()=>setTab(i)}>${t}</button>`)}</div>
+      <div class="tp" role="tabpanel" style=${tab===3||tab===2?{maxWidth:'none'}:null}>
+        ${tab===0?html`<div><p>${car.d}</p><p>${car.n} با قیمت شروع ${money(car.p)} و ${fmt(car.hp)} اسب‌بخار قدرت، برای کسانی طراحی شده که کیفیت را بدون هیاهو می‌خواهند.</p></div>`:null}
+        ${tab===1?html`<div><p class="muted" style=${{marginBottom:12}}>مشخصات و قیمت‌ها تقریبی‌اند و پیش از انتشار باید با منبع رسمی تطبیق داده شوند.</p><div class="dl">${all.map(s=>html`<div key=${s[0]}><span>${s[0]}</span><b>${s[1]}</b></div>`)}</div></div>`:null}
+        ${tab===2?(P.length?html`<div class="gal">${P.map((_,i)=>html`<div key=${i}><${Pic} c=${car} i=${i}/></div>`)}</div>`:html`<div class="empty">گالری خالی است.<br/><br/><button class="btn" onClick=${()=>go('media')}>بارگذاری تصویر</button></div>`):null}
+        ${tab===3?html`<${V360} c=${car} go=${go}/>`:null}
+        ${tab===4?html`<div>${REV.map(r=>html`<div class="rv" key=${r[0]}><b>${r[0]}</b><div>${r[1]}</div></div>`)}</div>`:null}</div>
+      <h2 style=${{margin:'30px 0 24px'}}>خودروهای <em>مشابه</em></h2><div class="grid">${CARS.filter(x=>x.c===car.c&&x.id!==car.id).concat(CARS.filter(x=>x.c!==car.c)).slice(0,3).map(card)}</div></div>`;
+  }else if(route==='media'){
+    const ro=!window.claude?'این نسخه خارج از محیط Artifact اجرا می‌شود و ذخیره‌سازی در دسترس نیست.':'فقط ویرایشگران همین Artifact (و مالک) می‌توانند تصاویر را مدیریت کنند؛ برای مشاهده، تصاویر ثبت‌شده نمایش داده می‌شوند.';
+    const th=(c,kind,all)=>{const ids=(MEDIA[c.id]||{})[kind]||[];return html`<div class="mth">${(all?ids:ids.slice(0,6)).map((id,i)=>html`<span class="mtb" key=${id+i}><img src=${U(id)} alt=""/>${canEdit&&all?html`<button aria-label="حذف تصویر" onClick=${()=>remove(c,kind,i)}>✕</button><label aria-label="جایگزینی تصویر">⟳<input type="file" accept="image/*" hidden onChange=${e=>{put(c,kind,e.target.files,i);e.target.value=''}}/></label>`:null}</span>`)}</div>`};
+    page=html`<div class="page"><div class="wrap"><h2 style=${{fontSize:34}}>مدیریت <em>تصاویر</em></h2>
+      <p class="muted" style=${{maxWidth:700,margin:'8px 0 10px'}}>تصاویر به‌صورت فایل در فضای ذخیره‌سازی همین Artifact نگهداری می‌شوند و فهرست آن‌ها برای همه بازدیدکنندگان یکسان است. فقط عکس‌هایی را بارگذاری کنید که حق استفاده از آن‌ها را دارید.</p>
+      <p class="muted" style=${{maxWidth:700,marginBottom:16}}>نمای ۳۶۰: ۲۴ تا ۷۲ عکس از دور تا دور خودرو با فاصله زاویه برابر؛ فایل‌ها را شماره‌گذاری کنید (۰۱، ۰۲، …).</p>
+      ${!rt.ready?html`<p class="muted" role="status">در حال اتصال…</p>`:null}
+      ${rt.ready&&!canEdit?html`<div class="empty" style=${{marginBottom:20,padding:24}}>${ro}</div>`:html`<button class="btn ghost sm" style=${{marginBottom:10}} onClick=${exportM}>دریافت فهرست (manifest.json)</button>`}
+      ${CARS.map(c=>html`<div class="mrow" key=${c.id}><div><b>${c.n}</b><div class="muted">${c.c}</div></div>
+        <div><div class="muted">تصاویر اصلی · ${fmt(ph(c).length)}</div>${th(c,'photos',true)}
+          ${canEdit?html`<label class="btn ghost sm"><${Ic} n="plus"/>افزودن تصویر<input type="file" accept="image/*" multiple hidden onChange=${e=>{put(c,'photos',e.target.files);e.target.value=''}}/></label>${ph(c).length?html` <button class="rm" onClick=${()=>remove(c,'photos')}>حذف همه</button>`:null}`:null}</div>
+        <div><div class="muted">فریم‌های ۳۶۰° · ${fmt(fr(c).length)}</div>${th(c,'frames',false)}
+          ${canEdit?html`<label class="btn ghost sm"><${Ic} n="plus"/>${fr(c).length?'جایگزینی فریم‌ها':'افزودن فریم‌ها'}<input type="file" accept="image/*" multiple hidden onChange=${e=>{put(c,'frames',e.target.files);e.target.value=''}}/></label>${fr(c).length?html` <button class="rm" onClick=${()=>remove(c,'frames')}>حذف همه</button>`:null}`:null}</div></div>`)}</div></div>`;
+  }else if(route==='catalog'){
+    page=html`<div class="page"><div class="wrap"><h2 style=${{fontSize:34}}>کلکسیون <em>خودروها</em></h2><p class="muted" style=${{marginBottom:28}}>بهترین خودروهای لوکس در یک مکان</p>
+      ${pick?html`<div class="pickbar" role="status"><span>یک خودرو را برای مقایسه انتخاب کنید (${fmt(cmp.length)} از ۳)</span><button class="rm" onClick=${()=>{const b=pick.back;setPick(null);go(b)}}>انصراف</button></div>`:null}
+      <div class="tools"><input id="cs" type="search" aria-label="جست‌وجو" placeholder="جست‌وجوی نام، دسته یا پیشرانه…" value=${q} onInput=${e=>setQ(e.target.value)}/>
+      <select value=${sort} onChange=${e=>setSort(e.target.value)} aria-label="مرتب‌سازی"><option value="new">مرتب‌سازی بر اساس</option><option value="pa">ارزان‌ترین</option><option value="pd">گران‌ترین</option><option value="hp">قدرتمندترین</option></select>
+      <button class="btn ghost sm" aria-expanded=${showF} aria-controls="fp" onClick=${()=>setShowF(!showF)}>فیلترها${nF?' ('+fmt(nF)+')':''}</button></div>
+      ${showF?html`<div class="fpanel" id="fp"><label>برند<select value=${fl.br} onChange=${e=>setF('br',e.target.value)}><option value="">همه برندها</option>${[...new Set(CARS.map(c=>c.br))].sort().map(b=>html`<option key=${b} value=${b}>${b}</option>`)}</select></label>
+        <label>سال ساخت از<select value=${fl.yf} onChange=${e=>setF('yf',e.target.value)}><option value="">همه</option>${[...new Set(CARS.map(c=>c.y))].sort().map(y=>html`<option key=${y} value=${y}>${fmt(y)}</option>`)}</select></label>
+        <label>تا سال<select value=${fl.yt} onChange=${e=>setF('yt',e.target.value)}><option value="">همه</option>${[...new Set(CARS.map(c=>c.y))].sort().map(y=>html`<option key=${y} value=${y}>${fmt(y)}</option>`)}</select></label>
+        <label>حداقل قیمت ($)<input inputmode="numeric" placeholder="0" value=${fl.pmin} onInput=${e=>setF('pmin',nd(e.target.value))}/></label>
+        <label>حداکثر قیمت ($)<input inputmode="numeric" placeholder="350000" value=${fl.pmax} onInput=${e=>setF('pmax',nd(e.target.value))}/></label>
+        <button class="rm" onClick=${resetF}>پاک کردن فیلترها</button></div>`:null}
+      <div class="chips" style=${{marginBottom:20}}>${['همه',...CATS].map(x=>html`<button key=${x} aria-pressed=${cat===x} class=${'chip'+(cat===x?' on':'')} onClick=${()=>setCat(x)}>${x}</button>`)}</div>
+      <p class="muted" style=${{marginBottom:16}} role="status">${fmt(list.length)} خودرو</p>
+      ${list.length?html`<div class="grid">${list.map(card)}</div>`:html`<div class="empty">خودرویی با این مشخصات پیدا نشد.<br/><br/><button class="btn ghost" onClick=${()=>{setQ('');setCat('همه');resetF()}}>پاک کردن فیلترها</button></div>`}</div></div>`;
+  }else if(route==='favs'){
+    const l=CARS.filter(x=>favs.includes(x.id));
+    page=html`<div class="page"><div class="wrap"><h2 style=${{fontSize:34,marginBottom:30}}><em>علاقه‌مندی‌ها</em></h2>
+      ${l.length?html`<div class="grid">${l.map(card)}</div>`:html`<div class="empty">هنوز خودرویی ذخیره نکرده‌اید.<br/><br/><button class="btn" onClick=${()=>go('catalog')}>مشاهده خودروها</button></div>`}</div></div>`;
+  }else if(route==='compare'){
+    const l=cmp.map(id=>CARS.find(x=>x.id===id));
+    const rows=[['قیمت','p',money],['قدرت','hp',v=>fmt(v)+' hp'],['شتاب ۰–۱۰۰','s',v=>fmt(v)+' ثانیه'],['سرعت نهایی','t',v=>fmt(v)+' km/h'],['پیشرانه','e'],['دسته','c'],['ظرفیت','seats',v=>fmt(v)+' نفر']];
+    page=html`<div class="page"><div class="wrap"><h2 style=${{fontSize:34}}>مقایسه <em>خودروها</em></h2><p class="muted" style=${{marginBottom:30}}>تا ۳ خودرو؛ بهترین مقدار هر ردیف طلایی است.</p>
+      ${l.length<2?html`<div class="empty">برای مقایسه حداقل دو خودرو انتخاب کنید.<br/><br/><button class="btn" onClick=${()=>startPick('compare')}>انتخاب خودرو</button></div>`:
+      html`<div class="scroll"><table><thead><tr><th></th>${l.map(c=>html`<th key=${c.id}>${c.n}<br/><button class="rm" onClick=${()=>toggleCmp(c)}>حذف ✕</button></th>`)}</tr></thead>
+      <tbody>${rows.map(([lb,k,f])=>{const dir=BEST[k];const best=dir?(dir>0?Math.max:Math.min)(...l.map(c=>c[k])):null;
+        return html`<tr key=${k}><td>${lb}</td>${l.map(c=>html`<td key=${c.id} class=${dir&&c[k]===best?'best':''}>${f?f(c[k]):c[k]}</td>`)}</tr>`})}</tbody></table></div>`}
+      ${l.length>=2&&l.length<3?html`<div style=${{marginTop:20}}><button class="btn ghost" onClick=${()=>startPick('compare')}><${Ic} n="plus"/>افزودن خودروی سوم</button></div>`:null}</div></div>`;
+  }else{
+    const wp=CARS.filter(c=>ph(c).length),sl=(wp.length?wp:[CARS[4]]).slice(0,3),N=sl.length,hi=hs%N,hc=sl[hi],H=HT[hi],hp=ph(hc);
+    const sc=CARS.find(x=>x.id===sel);
+    page=html`<div>
+    <div class="hero">
+      <div class="wrap hw"><div class="htxt" key=${hi}><div class="eyebrow">${hc.n}</div><h1>${H[0]}<br/>${H[1]} <em>${H[2]}</em></h1><p>${H[3]}</p><button class="btn" onClick=${()=>go('car-'+hc.id)}><${Ic} n="left"/>مشاهده ${hc.n}</button></div>
+        ${hp.length?html`<div class="hcar" key=${hc.id}><img class="im" src=${hp[0]} alt=${hc.n}/></div>`:null}
+        ${!hp.length?html`<div class="hempty"><p>برای نمایش Hero سینمایی، عکس واقعی خودروها را بارگذاری کنید.</p><button class="btn ghost" onClick=${()=>go('media')}><${Ic} n="cam"/>بارگذاری تصویر</button></div>`:null}</div>
+      <div class="hfoot"><div class="wrap"><button class="scrl" onClick=${()=>window.scrollTo({top:700,behavior:'smooth'})}><b></b><span>Scroll Down</span></button>
+        <div class="pg"><button aria-label="قبلی" onClick=${()=>setHs(hs+N-1)}><${Ic} n="left"/></button><span>0${hi+1} / 0${N}</span><button aria-label="بعدی" onClick=${()=>setHs(hs+1)}><${Ic} n="arrow"/></button></div></div></div></div>
+    <section><div class="wrap"><div class="head"><div><div class="eyebrow">Collection</div><h2 style=${{marginTop:6}}>کلکسیون <em>خودروها</em></h2><p class="muted">بهترین خودروهای لوکس در یک مکان</p></div><button class="btn ghost" onClick=${()=>{setCat('همه');go('catalog')}}>همه خودروها</button></div>
+      <div class="cats" style=${{marginBottom:20}}>${CATS.map((x,i)=>html`<button class="cat" key=${x} onClick=${()=>{setCat(x);setQ('');go('catalog')}}><i>0${i+1}</i><b>${x}</b><span>${fmt(CARS.filter(c=>c.c===x).length)} مدل</span></button>`)}</div>
+      <div class="grid">${[CARS[0],CARS[1],CARS[6]].map(card)}</div></div></section>
+    <section class="alt"><div class="wrap v360"><div class="eyebrow">360°</div><h2 style=${{marginTop:6}}>نمایش <em>۳۶۰ درجه</em></h2><p class="muted">خودرو را بکشید و از تمام زوایا ببینید</p>
+      <div class="chips" style=${{justifyContent:'center',margin:'20px 0 0'}}>${CARS.map(c=>html`<button key=${c.id} class=${'chip'+(sel===c.id?' on':'')} aria-pressed=${sel===c.id} onClick=${()=>setSel(c.id)}>${c.n}</button>`)}</div>
+      <${V360} c=${sc} go=${go}/></div></section>
+    <section id="cmpsec"><div class="wrap v360"><h2>مقایسه <em>خودروها</em></h2><p class="muted">تا سه خودرو را کنار هم مقایسه کنید</p>
+      <div class="cslots">${[0,1,2].map(i=>{const c=CARS.find(x=>x.id===cmp[i]);return c?html`<div class="slot" key=${i}><button class="x" aria-label=${'حذف '+c.n} onClick=${()=>toggleCmp(c)}>✕</button><${Pic} c=${c}/><b>${c.n}</b></div>`:html`<button class="slot add" key=${i} onClick=${()=>startPick('home')}><span style=${{fontSize:30}}>+</span>افزودن خودرو</button>`})}</div>
+      <div style=${{display:'flex',gap:12,justifyContent:'center',flexWrap:'wrap'}}>${cmp.length<3?html`<button class="btn" onClick=${()=>startPick('home')}><${Ic} n="left"/>مقایسه کنید</button>`:null}
+        ${cmp.length>=2?html`<button class=${'btn'+(cmp.length<3?' ghost':'')} onClick=${()=>go('compare')}>مشاهده جدول مقایسه</button>`:null}</div></div></section>
+    <section class="alt"><div class="wrap"><div class="head"><div><div class="eyebrow">Why VELOX</div><h2 style=${{marginTop:6}}>طراحی که <em>می‌ماند</em></h2><p class="muted" style=${{maxWidth:520}}>VELOX مجموعه‌ای منتخب از خودروهای لوکس است؛ هر مدل بر اساس کیفیت ساخت، تجربه رانندگی و سادگی خطوط برگزیده می‌شود.</p></div></div>
+      <div class="feats">${[['جست‌وجوی دقیق','فیلتر بر اساس دسته، قیمت و قدرت'],['مقایسه هوشمند','تا سه خودرو، با نمایش بهترین مقدار'],['علاقه‌مندی‌ها','فهرست شخصی که در مرورگر می‌ماند'],['نمای ۳۶۰ درجه','چرخش واقعی با کشیدن یا لمس']].map((f,i)=>html`<div class="feat" key=${i}><b>${f[0]}</b><span>${f[1]}</span></div>`)}</div></div></section></div>`;
+  }
+  return html`<div>
+    <header class=""><div class="wrap bar"><button class="logo" aria-label="VELOX – صفحه اصلی" onClick=${()=>go('home')}>VELOX</button>
+      <nav aria-label="ناوبری اصلی" class=${menu?'open':''}>${nav.map(([r,l])=>html`<button key=${r} aria-current=${base===r?'page':null} class=${base===r?'on':''} onClick=${()=>go(r)}>${l}</button>`)}</nav>
+      <div class="ico"><button class="ib" aria-label="جست‌وجو" onClick=${()=>{go('catalog');setTimeout(()=>{const e=document.getElementById('cs');e&&e.focus()},60)}}><${Ic} n="search"/></button>
+        <button class="ib" aria-label=${'علاقه‌مندی‌ها'+(favs.length?' ('+fmt(favs.length)+')':'')} onClick=${()=>go('favs')}><${Ic} n="heart"/>${favs.length?html`<i>${fmt(favs.length)}</i>`:null}</button>
+        <button class="ib burger" aria-label="منو" aria-expanded=${menu} onClick=${()=>setMenu(!menu)}><${Ic} n="menu"/></button></div></div></header>
+    ${page}
+    ${cmp.length>0&&route!=='compare'?html`<div class="cmpbar"><span>${fmt(cmp.length)} خودرو برای مقایسه انتخاب شده</span><button class="btn" onClick=${()=>go('compare')}>مقایسه</button><button class="rm" onClick=${()=>{setCmp([]);say('مقایسه پاک شد')}}>پاک کردن</button></div>`:null}
+    <div class="toast" role="status" aria-live="polite" style=${{opacity:toast?1:0}}>${toast}</div>
+    <footer><div class="wrap"><span class="logo" style=${{fontSize:18}}>VELOX</span><span>© ۲۰۲۶ VELOX · مشخصات و قیمت‌ها نمونه و نمایشی هستند</span></div></footer></div>`;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
+</script>
+</body>
+</html>
