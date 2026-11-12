@@ -256,12 +256,16 @@ section{padding:60px 0}
 <script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>
 const {useState,useEffect,useMemo,useRef}=React;
 const html=htm.bind(React.createElement);
 const fmt=n=>n.toLocaleString('fa-IR');
 const money=n=>'$'+n.toLocaleString('en-US');
 const CATS=['اسپرت','سوپراسپرت'];
+const SB=(()=>{try{return window.supabase.createClient('https://mxfspihhillnytdnnnyg.supabase.co','sb_publishable_gT5gJQWf747KVy4cCuewhw_pC85jZT0',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}})}catch(e){return null}})();
+const OFF='اتصال به سرور برقرار نیست؛ اینترنت را بررسی کنید.';
+const mapErr=m=>{m=(m||'').toLowerCase();return m.includes('invalid login')?'ایمیل یا رمز عبور درست نیست.':m.includes('not confirmed')?'ایمیل شما هنوز تأیید نشده است؛ لینک ارسال‌شده را بزنید.':m.includes('rate limit')||m.includes('too many')?'تعداد تلاش زیاد بود؛ کمی بعد دوباره امتحان کنید.':m.includes('password')?'رمز عبور پذیرفته نشد؛ رمز قوی‌تری انتخاب کنید.':m.includes('fetch')||m.includes('network')?OFF:'خطایی رخ داد؛ دوباره تلاش کنید.'};
 const CARS=[
 {id:'f296',n:'Ferrari 296 GTB',tg:'Hybrid heartbeat.',c:'سوپراسپرت',p:322000,hp:819,s:2.9,t:330,e:'V6 توئین‌توربو پلاگین‌هیبرید',y:2022,seats:2,d:'ابرخودروی هیبرید پلاگین با موتور V6 توئین‌توربو و موتور الکتریکی؛ ترکیبی از شتاب بی‌وقفه و صدایی فراموش‌نشدنی.'},
 {id:'p911',n:'Porsche 911',tg:'The legend, evolved.',c:'اسپرت',p:135000,hp:443,s:3.5,t:308,e:'فلت‌ سیکس توئین‌توربو',y:2023,seats:4,d:'نماد کوپه‌های اسپرت با موتور شش‌سیلندر تخت در عقب؛ دقت بالا در فرمان و کاربردی‌بودن در استفاده روزمره.'},
@@ -329,64 +333,76 @@ function App(){
   const setF=(k,v)=>setFl(f=>({...f,[k]:v}));const nF=Object.values(fl).filter(Boolean).length;const resetF=()=>setFl({br:'',yf:'',yt:'',pmin:'',pmax:''});
   const say=m=>{setToast(m);clearTimeout(window.__t);window.__t=setTimeout(()=>setToast(''),2600)};
   const bump=()=>setTick(x=>x+1);
-  const loadUser=()=>{try{return JSON.parse(localStorage.getItem('velox-user')||'null')}catch(e){return null}};
-  const [user,setUser]=useState(loadUser),[su,setSu]=useState({name:'',id:'',pw:'',pw2:'',ok:false}),[suE,setSuE]=useState({}),[showPw,setShowPw]=useState(false);
-  useEffect(()=>{try{user?localStorage.setItem('velox-user',JSON.stringify(user)):localStorage.removeItem('velox-user')}catch(e){}},[user]);
+  const [user,setUser]=useState(null),[su,setSu]=useState({name:'',id:'',pw:'',pw2:'',ok:false}),[suE,setSuE]=useState({}),[showPw,setShowPw]=useState(false);
   const en=t=>t.replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d));
-  const idClean=v=>{const t=en(v);return /^[\d\s]*$/.test(t)?t.replace(/\D/g,'').slice(0,11):v.slice(0,254)};
+  const idClean=v=>v.slice(0,254);
   const setS=(k,v)=>{setSu(x=>({...x,[k]:v}));setSuE(e=>({...e,[k]:''}))};
   const [li,setLi]=useState({id:'',pw:''}),[liE,setLiE]=useState(''),[busy,setBusy]=useState(false),fails=useRef({n:0,until:0});
   const setL=(k,v)=>{setLi(x=>({...x,[k]:v}));setLiE('')};
-  const toB64=u=>btoa(String.fromCharCode(...u)),fromB64=t=>Uint8Array.from(atob(t),c=>c.charCodeAt(0));
-  const getAcc=()=>{try{const a=JSON.parse(localStorage.getItem('velox-accts')||'{}');return a&&typeof a==='object'&&!Array.isArray(a)?a:{}}catch(e){return{}}};
-  const hashPw=async(pw,salt)=>{const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveBits']);return new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2',salt,iterations:150000,hash:'SHA-256'},k,256))};
+  useEffect(()=>{try{localStorage.removeItem('velox-user');localStorage.removeItem('velox-accts')}catch(e){}
+    if(!SB)return;let alive=true;
+    const apply=async s=>{const u=s&&s.user;if(!u){alive&&setUser(null);return}
+      let name=(u.user_metadata&&u.user_metadata.name)||(u.email||'').split('@')[0];
+      try{const r=await SB.from('profiles').select('name').eq('id',u.id).maybeSingle();if(r.data&&r.data.name)name=r.data.name}catch(e){}
+      alive&&setUser({id:u.id,email:u.email,name})};
+    SB.auth.getSession().then(r=>apply(r.data.session)).catch(()=>{});
+    const {data}=SB.auth.onAuthStateChange((ev,s)=>{setTimeout(()=>apply(s),0)});
+    return()=>{alive=false;data.subscription.unsubscribe()}},[]);
+  useEffect(()=>{if(!SB||!user)return;(async()=>{try{const r=await SB.from('favorites').select('car_id');if(r.error)return;
+    const db=(r.data||[]).map(x=>x.car_id),local=favs.filter(id=>!db.includes(id));
+    if(local.length)await SB.from('favorites').upsert(local.map(id=>({user_id:user.id,car_id:id})),{onConflict:'user_id,car_id',ignoreDuplicates:true});
+    setFavs(f=>[...new Set([...f,...db])])}catch(e){}})()},[user&&user.id]);
   const [pf,setPf]=useState({name:'',cur:'',pw:'',pw2:''}),[pfE,setPfE]=useState({});
   useEffect(()=>{if(route==='profile'&&user)setPf({name:user.name,cur:'',pw:'',pw2:''});setPfE({})},[route,user&&user.id]);
   const setP=(k,v)=>{setPf(x=>({...x,[k]:v}));setPfE(e=>({...e,[k]:''}))};
-  const logout=()=>{setUser(null);say('از حساب خارج شدید');go('home')};
-  const saveName=()=>{const name=pf.name.trim();if(name.length<2){setPfE({name:'نام خود را وارد کنید (حداقل ۲ حرف).'});return}
-    try{const ac=getAcc();if(ac[user.id]){ac[user.id].name=name;localStorage.setItem('velox-accts',JSON.stringify(ac))}}catch(err){}
-    setUser({...user,name});say('تغییرات پروفایل ذخیره شد')};
+  const PWOK=p=>p.length>=8&&/[A-Za-z]/.test(p)&&/\d/.test(p);
+  const logout=async()=>{try{SB&&await SB.auth.signOut()}catch(err){}setUser(null);setFavs([]);say('از حساب خارج شدید');go('home')};
+  const saveName=async()=>{const name=pf.name.trim();if(name.length<2){setPfE({name:'نام خود را وارد کنید (حداقل ۲ حرف).'});return}
+    if(!SB){say(OFF);return}if(busy)return;setBusy(true);
+    try{const r=await SB.from('profiles').update({name}).eq('id',user.id);setBusy(false);
+      if(r.error){setPfE({name:'ذخیره نشد؛ دوباره تلاش کنید.'});return}
+      setUser({...user,name});say('تغییرات پروفایل ذخیره شد')}catch(err){setBusy(false);say(OFF)}};
   const changePw=async()=>{
-    const e={},cur=en(pf.cur),pw=en(pf.pw),now=Date.now(),f=fails.current;
+    const e={},f=fails.current,now=Date.now();
     if(f.until>now){setPfE({cur:'تلاش ناموفق زیاد بود؛ '+fmt(Math.ceil((f.until-now)/1000))+' ثانیه دیگر دوباره تلاش کنید.'});return}
-    if(!cur)e.cur='رمز عبور فعلی را وارد کنید.';
-    if(pw.length<8||!/[A-Za-z]/.test(pw)||!/\d/.test(pw))e.pw='رمز جدید حداقل ۸ کاراکتر و شامل حرف انگلیسی و عدد باشد.';
+    if(!pf.cur)e.cur='رمز عبور فعلی را وارد کنید.';
+    if(!PWOK(pf.pw))e.pw='رمز جدید حداقل ۸ کاراکتر و شامل حرف انگلیسی و عدد باشد.';
     else if(pf.pw2!==pf.pw)e.pw2='تکرار رمز جدید با رمز جدید یکسان نیست.';
     setPfE(e);if(Object.keys(e).length)return;
-    if(busy)return;setBusy(true);
-    try{const ac=getAcc(),a=ac[user.id];
-      if(!a||!a.salt||!a.hash){setBusy(false);setPfE({cur:'اطلاعات حساب در این مرورگر پیدا نشد؛ دوباره ثبت‌نام کنید.'});return}
-      if(toB64(await hashPw(cur,fromB64(a.salt)))!==a.hash){setBusy(false);f.n++;if(f.n>=5){f.n=0;f.until=Date.now()+30000}setPfE({cur:'رمز عبور فعلی درست نیست.'});return}
-      const salt=crypto.getRandomValues(new Uint8Array(16));a.salt=toB64(salt);a.hash=toB64(await hashPw(pw,salt));localStorage.setItem('velox-accts',JSON.stringify(ac))}
-    catch(err){setBusy(false);say('تغییر رمز در این مرورگر ممکن نیست');return}
-    fails.current={n:0,until:0};setBusy(false);setPf(x=>({...x,cur:'',pw:'',pw2:''}));setShowPw(false);say('رمز عبور تغییر کرد')};
+    if(!SB){say(OFF);return}if(busy)return;setBusy(true);
+    try{const v=await SB.auth.signInWithPassword({email:user.email,password:pf.cur});
+      if(v.error){setBusy(false);f.n++;if(f.n>=5){f.n=0;f.until=Date.now()+30000}setPfE({cur:'رمز عبور فعلی درست نیست.'});return}
+      const r=await SB.auth.updateUser({password:pf.pw});setBusy(false);
+      if(r.error){setPfE({pw:mapErr(r.error.message)});return}
+      fails.current={n:0,until:0};setPf(x=>({...x,cur:'',pw:'',pw2:''}));setShowPw(false);say('رمز عبور تغییر کرد')}
+    catch(err){setBusy(false);say(OFF)}};
   const submitLi=async()=>{
-    const now=Date.now(),f=fails.current;
+    const f=fails.current,now=Date.now();
     if(f.until>now){setLiE('تلاش ناموفق زیاد بود؛ '+fmt(Math.ceil((f.until-now)/1000))+' ثانیه دیگر دوباره تلاش کنید.');return}
-    const id=en(li.id.trim()).replace(/\s/g,''),pw=en(li.pw);
-    if(!id||!pw){setLiE('ایمیل یا موبایل و رمز عبور را وارد کنید.');return}
-    if(busy)return;setBusy(true);let ok=false,name='';
-    try{const a=getAcc()[id];if(a&&a.salt&&a.hash){ok=toB64(await hashPw(pw,fromB64(a.salt)))===a.hash;name=a.name}else{await hashPw(pw,new Uint8Array(16))}}
-    catch(err){setBusy(false);setLiE('ورود در این مرورگر ممکن نیست.');return}
-    setBusy(false);
-    if(!ok){f.n++;if(f.n>=5){f.n=0;f.until=Date.now()+30000}setLiE('ایمیل یا موبایل یا رمز عبور درست نیست.');return}
-    fails.current={n:0,until:0};setUser({name,id});setLi({id:'',pw:''});setShowPw(false);say('خوش آمدید '+name);go('home')};
+    const email=li.id.trim().toLowerCase();
+    if(!email||!li.pw){setLiE('ایمیل و رمز عبور را وارد کنید.');return}
+    if(!SB){setLiE(OFF);return}if(busy)return;setBusy(true);
+    try{const r=await SB.auth.signInWithPassword({email,password:li.pw});setBusy(false);
+      if(r.error){f.n++;if(f.n>=5){f.n=0;f.until=Date.now()+30000}setLiE(mapErr(r.error.message));return}
+      fails.current={n:0,until:0};setLi({id:'',pw:''});setShowPw(false);say('خوش آمدید');go('home')}
+    catch(err){setBusy(false);setLiE(OFF)}};
   const submitSu=async()=>{
-    const e={},name=su.name.trim(),id=en(su.id.trim()).replace(/\s/g,''),pw=en(su.pw);
+    const e={},name=su.name.trim(),email=su.id.trim().toLowerCase();
     if(name.length<2)e.name='نام خود را وارد کنید (حداقل ۲ حرف).';
-    if(!(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(id)||/^09\d{9}$/.test(id)))e.id='ایمیل یا شماره موبایل معتبر وارد کنید.';
-    if(pw.length<8||!/[A-Za-z]/.test(pw)||!/\d/.test(pw))e.pw='رمز عبور حداقل ۸ کاراکتر و شامل حرف انگلیسی و عدد باشد.';
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))e.id='یک ایمیل معتبر وارد کنید.';
+    if(!PWOK(su.pw))e.pw='رمز عبور حداقل ۸ کاراکتر و شامل حرف انگلیسی و عدد باشد.';
     if(su.pw2!==su.pw)e.pw2='تکرار رمز عبور با رمز عبور یکسان نیست.';
     if(!su.ok)e.ok='برای ادامه باید قوانین را بپذیرید.';
     setSuE(e);
     if(Object.keys(e).length){const k=Object.keys(e)[0],el=document.getElementById('su-'+k);el&&el.focus();return}
-    const ac=getAcc();if(ac[id]){setSuE({id:'این ایمیل یا شماره قبلا ثبت‌نام کرده است؛ وارد شوید.'});const el=document.getElementById('su-id');el&&el.focus();return}
-    if(busy)return;setBusy(true);
-    try{const salt=crypto.getRandomValues(new Uint8Array(16));ac[id]={name,salt:toB64(salt),hash:toB64(await hashPw(pw,salt))};localStorage.setItem('velox-accts',JSON.stringify(ac))}
-    catch(err){setBusy(false);say('ساخت حساب در این مرورگر ممکن نیست');return}
-    setBusy(false);
-    setUser({name,id});setSu({name:'',id:'',pw:'',pw2:'',ok:false});setShowPw(false);say('ثبت‌نام با موفقیت انجام شد؛ خوش آمدید '+name);go('home')};
+    if(!SB){say(OFF);return}if(busy)return;setBusy(true);
+    try{const r=await SB.auth.signUp({email,password:su.pw,options:{data:{name},emailRedirectTo:location.origin+location.pathname}});
+      setBusy(false);
+      if(r.error){setSuE({id:mapErr(r.error.message)});return}
+      setSu({name:'',id:'',pw:'',pw2:'',ok:false});setShowPw(false);
+      if(r.data.session){say('ثبت‌نام انجام شد؛ خوش آمدید '+name);go('home')}
+      else{say('ایمیل تأیید ارسال شد؛ لینک آن را بزنید و بعد وارد شوید.');go('login')}}
+    catch(err){setBusy(false);say(OFF)}};
   const [rt,setRt]=useState({ready:false,edit:false,assets:false,db:false});
   const save=async()=>{bump();try{await RT.db.doc('manifest/main').set({m:MEDIA});return true}catch(e){say('ذخیره فهرست تصاویر ناموفق بود');return false}};
   useEffect(()=>{let off=()=>{};(async()=>{
@@ -400,7 +416,7 @@ function App(){
   useEffect(()=>{try{localStorage.setItem('velox-fav',JSON.stringify(favs))}catch(e){}},[favs]);
   useEffect(()=>{if(route!=='home')return;const t=setInterval(()=>setHs(x=>x+1),7000);return()=>clearInterval(t)},[route,hs]);
   const go=r=>{location.hash=r};
-  const toggleFav=c=>{const on=favs.includes(c.id);setFavs(f=>on?f.filter(x=>x!==c.id):[...f,c.id]);say(on?c.n+' از علاقه‌مندی‌ها حذف شد':c.n+' به علاقه‌مندی‌ها افزوده شد')};
+  const toggleFav=c=>{const on=favs.includes(c.id);setFavs(f=>on?f.filter(x=>x!==c.id):[...f,c.id]);if(SB&&user){(on?SB.from('favorites').delete().eq('user_id',user.id).eq('car_id',c.id):SB.from('favorites').insert({user_id:user.id,car_id:c.id})).then(()=>{},()=>{})}say(on?c.n+' از علاقه‌مندی‌ها حذف شد':c.n+' به علاقه‌مندی‌ها افزوده شد')};
   const toggleCmp=c=>{if(cmp.includes(c.id)){setCmp(cmp.filter(x=>x!==c.id));say(c.n+' از مقایسه حذف شد')}else if(cmp.length>=3)say('حداکثر سه خودرو را می‌توان مقایسه کرد');else{setCmp([...cmp,c.id]);say(c.n+' به مقایسه افزوده شد')}};
   const canEdit=rt.edit&&rt.assets&&rt.db;
   const dropAssets=ids=>ids.filter(x=>x&&!x.includes('/')).forEach(x=>RT.assets.delete(x).catch(()=>{}));
@@ -492,7 +508,7 @@ function App(){
       html`<div class="pstack">
       <div class="auth"><div class="av" aria-hidden="true">${user.name.trim().charAt(0).toUpperCase()}</div><div class="eyebrow" style=${{textAlign:'center'}}>Profile</div><h2 style=${{textAlign:'center',margin:'6px 0 24px'}}>پروفایل <em>من</em></h2>
         <div class=${'fld'+(pfE.name?' bad':'')}><label for="pf-name">نام و نام خانوادگی</label><input id="pf-name" type="text" autocomplete="name" value=${pf.name} aria-invalid=${!!pfE.name} maxlength="60" onInput=${ev=>setP('name',ev.target.value)} onKeyDown=${ev=>ev.key==='Enter'&&saveName()}/>${pfE.name?html`<div class="err" role="alert">${pfE.name}</div>`:null}</div>
-        <div class="fld"><label for="pf-id">ایمیل یا شماره موبایل</label><input id="pf-id" type="text" value=${user.id} disabled style=${{direction:'ltr',textAlign:'left'}}/><div class="hint">این مورد قابل تغییر نیست.</div></div>
+        <div class="fld"><label for="pf-id">ایمیل</label><input id="pf-id" type="text" value=${user.email} disabled style=${{direction:'ltr',textAlign:'left'}}/><div class="hint">این مورد قابل تغییر نیست.</div></div>
         <button class="btn" onClick=${saveName}>ذخیره تغییرات</button></div>
       <div class="auth"><h2 style=${{fontSize:22,marginBottom:20}}>تغییر <em>رمز عبور</em></h2>
         ${pfld('cur','رمز عبور فعلی','current-password')}
@@ -504,11 +520,11 @@ function App(){
     page=html`<div class="page"><div class="wrap">${user?
       html`<div class="auth" style=${{textAlign:'center'}}><div class="eyebrow">Welcome</div><h2 style=${{margin:'8px 0 12px'}}>${user.name}، <em>خوش آمدید</em></h2><p class="muted" style=${{marginBottom:24}}>شما وارد حساب خود شده‌اید.</p><button class="btn" onClick=${()=>go('catalog')}>مشاهده خودروها</button></div>`:
       html`<div class="auth"><div class="eyebrow">Sign in</div><h2 style=${{marginTop:6}}>ورود به <em>حساب کاربری</em></h2><p class="muted">اگر قبلا ثبت‌نام کرده‌اید، وارد شوید.</p>
-      <div class=${'fld'+(liE?' bad':'')}><label for="li-id">ایمیل یا شماره موبایل</label><input id="li-id" type="text" autocomplete="username" value=${li.id} maxlength="254" onInput=${ev=>setL('id',idClean(ev.target.value))} onKeyDown=${ev=>ev.key==='Enter'&&submitLi()} style=${{direction:'ltr',textAlign:'left'}}/></div>
+      <div class=${'fld'+(liE?' bad':'')}><label for="li-id">ایمیل</label><input id="li-id" type="text" autocomplete="username" value=${li.id} maxlength="254" onInput=${ev=>setL('id',idClean(ev.target.value))} onKeyDown=${ev=>ev.key==='Enter'&&submitLi()} style=${{direction:'ltr',textAlign:'left'}}/></div>
       <div class=${'fld'+(liE?' bad':'')}><label for="li-pw">رمز عبور</label><div class="pwrow"><input id="li-pw" type=${showPw?'text':'password'} autocomplete="current-password" value=${li.pw} aria-invalid=${!!liE} maxlength="128" onInput=${ev=>setL('pw',ev.target.value)} onKeyDown=${ev=>ev.key==='Enter'&&submitLi()} style=${{direction:'ltr',textAlign:'left'}}/><button type="button" onClick=${()=>setShowPw(!showPw)} aria-label="نمایش یا پنهان کردن رمز">${showPw?'پنهان':'نمایش'}</button></div>${liE?html`<div class="err" role="alert">${liE}</div>`:null}</div>
       <button class="btn" disabled=${busy} onClick=${submitLi}>ورود</button>
       <p class="note">حساب ندارید؟ <button class="lnk" onClick=${()=>go('signup')}>ثبت‌نام کنید</button></p>
-      <p class="note">این نسخه نمایشی است؛ حساب‌ها فقط در همین مرورگر نگهداری می‌شوند.</p></div>`}</div></div>`;
+      <p class="note">اطلاعات حساب شما روی سرور نگهداری می‌شود.</p></div>`}</div></div>`;
   }else if(route==='signup'){
     const fld=(k,label,type,ac,hint,extra)=>html`<div class=${'fld'+(suE[k]?' bad':'')}><label for=${'su-'+k}>${label}</label>
       ${extra?html`<div class="pwrow"><input id=${'su-'+k} type=${showPw?'text':'password'} autocomplete=${ac} value=${su[k]} aria-invalid=${!!suE[k]} maxlength=${k==='name'?60:k==='id'?254:128} onInput=${ev=>setS(k,k==='id'?idClean(ev.target.value):ev.target.value)} onKeyDown=${ev=>ev.key==='Enter'&&submitSu()} style=${{direction:'ltr',textAlign:'left'}}/><button type="button" onClick=${()=>setShowPw(!showPw)} aria-label="نمایش یا پنهان کردن رمز">${showPw?'پنهان':'نمایش'}</button></div>`
@@ -518,13 +534,13 @@ function App(){
       html`<div class="auth" style=${{textAlign:'center'}}><div class="eyebrow">Welcome</div><h2 style=${{margin:'8px 0 12px'}}>${user.name}، <em>خوش آمدید</em></h2><p class="muted" style=${{marginBottom:24}}>حساب شما ساخته شده است.</p><button class="btn" onClick=${()=>go('catalog')}>مشاهده خودروها</button></div>`:
       html`<div class="auth"><div class="eyebrow">Join VELOX</div><h2 style=${{marginTop:6}}>ساخت <em>حساب کاربری</em></h2><p class="muted">برای ذخیرهٔ علاقه‌مندی‌ها و دریافت جدیدترین خودروها ثبت‌نام کنید.</p>
       ${fld('name','نام و نام خانوادگی','text','name')}
-      ${fld('id','ایمیل یا شماره موبایل','text','username','مثال: name@example.com یا ۰۹۱۲۳۴۵۶۷۸۹')}
+      ${fld('id','ایمیل','email','email','مثال: name@example.com')}
       ${fld('pw','رمز عبور','password','new-password','حداقل ۸ کاراکتر، شامل حرف انگلیسی و عدد',true)}
       ${fld('pw2','تکرار رمز عبور','password','new-password',null,true)}
       <div class=${'fld'+(suE.ok?' bad':'')}><label class="chk"><input id="su-ok" type="checkbox" checked=${su.ok} onChange=${ev=>setS('ok',ev.target.checked)}/><span>قوانین و حریم خصوصی VELOX را می‌پذیرم.</span></label>${suE.ok?html`<div class="err" role="alert">${suE.ok}</div>`:null}</div>
       <button class="btn" disabled=${busy} onClick=${submitSu}>ثبت‌نام</button>
       <p class="note">حساب دارید؟ <button class="lnk" onClick=${()=>go('login')}>وارد شوید</button></p>
-      <p class="note">این نسخه نمایشی است؛ رمز عبور فقط به‌صورت هش‌شده در همین مرورگر نگهداری می‌شود و به هیچ سروری ارسال نمی‌شود.</p></div>`}</div></div>`;
+      <p class="note">رمز عبور هرگز به‌صورت متن ساده ذخیره نمی‌شود. بعد از ثبت‌نام، ایمیل تأیید برای شما ارسال می‌شود.</p></div>`}</div></div>`;
   }else if(route==='favs'){
     const l=CARS.filter(x=>favs.includes(x.id));
     page=html`<div class="page"><div class="wrap"><h2 style=${{fontSize:34,marginBottom:30}}><em>علاقه‌مندی‌ها</em></h2>
