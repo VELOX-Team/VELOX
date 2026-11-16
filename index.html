@@ -48,7 +48,7 @@ svg.car,img.car{width:100%;height:auto;display:block}
 @keyframes up{from{opacity:0;transform:translateY(18px)}}@keyframes in{from{opacity:0}}
 @media(prefers-reduced-motion:reduce){.htxt,.hcar{animation:none}}
 .hfoot{position:absolute;z-index:3;inset-inline:0;bottom:30px;direction:ltr}
-.hfoot .wrap{display:flex;justify-content:flex-end;align-items:center;padding-top:0}
+.hfoot .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:0}
 .scrl{display:flex;gap:12px;align-items:center;color:#b9b7b0;font-size:13px;background:none;border:0}
 .scrl b{width:20px;height:32px;border:1px solid #b9b7b0;border-radius:11px;position:relative}.scrl b::after{content:"";position:absolute;left:8px;top:6px;width:2px;height:6px;background:var(--g)}
 .pg{display:flex;gap:18px;align-items:center;font-family:var(--s);font-size:18px}
@@ -228,27 +228,38 @@ section{padding:60px 0}
 .fpanel select option{background:var(--k)}
 @media(max-width:900px){.fpanel{grid-template-columns:1fr 1fr}.fpanel .rm{justify-self:start}}
 
-/* signup */
-.su{background:none;border:1px solid var(--g);color:var(--g);border-radius:99px;padding:5px 18px;font-size:13px;font-weight:600;margin-inline-end:6px;transition:.2s;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.su:hover,.su.on{background:var(--g);color:var(--k)}
-.auth{max-width:520px;margin:0 auto;background:#1a1c1f;border:1px solid var(--ln);border-radius:16px;padding:40px 36px}
-.auth h2{margin-bottom:6px}.auth .muted{margin-bottom:26px}
-.fld{margin-bottom:18px}.fld label{display:block;font-size:14px;margin-bottom:6px;color:#d4d2cb}
-.fld input[type=text],.fld input[type=password],.fld input[type=email]{width:100%;background:#111315;border:1px solid rgba(245,244,240,.18);border-radius:10px;padding:12px 16px;font-size:15px;outline:none;transition:.2s}
-.fld input:focus{border-color:var(--g);box-shadow:0 0 0 3px rgba(180,154,114,.18)}
-.fld.bad input{border-color:#d9776b}.fld .err{color:#e59a8f;font-size:12.5px;margin-top:5px}.fld .hint{color:#8c8a84;font-size:12.5px;margin-top:5px}
-.pwrow{position:relative}.pwrow input{padding-right:78px!important;padding-left:16px!important}
-.pwrow button{position:absolute;right:8px;left:auto;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--g);font-size:12.5px;padding:6px 8px}
-.chk{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:#b9b7b0;cursor:pointer}.chk input{accent-color:#B49A72;margin-top:6px;width:16px;height:16px}
-.auth .btn{width:100%;justify-content:center;margin-top:8px}
-.auth .note{margin-top:18px;font-size:12.5px;color:#8c8a84;text-align:center}
-.su.ln{border-color:transparent;color:var(--w)}.su.ln:hover{background:none;color:var(--g)}
-.av{width:72px;height:72px;border-radius:50%;background:var(--g);color:var(--k);display:grid;place-items:center;font:600 30px/1 var(--f);margin:0 auto 14px}
-.fld input:disabled{opacity:.6;cursor:not-allowed}
-.pstack{display:grid;gap:20px;max-width:520px;margin:0 auto}.pstack .auth{max-width:none;margin:0}
-.lnk{background:none;border:0;color:var(--g);text-decoration:underline;padding:0;font-size:inherit}
-.auth .btn:disabled{opacity:.6;cursor:wait}
-@media(max-width:900px){.auth{padding:28px 20px}.su{padding:4px 9px;font-size:12px;margin-inline-end:2px;max-width:90px}}
+.cact{padding:0 20px 18px}.cact .btn{width:100%;justify-content:center}
+.cart{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start}
+.clist{display:grid;gap:14px}
+.ci{display:grid;grid-template-columns:140px 1fr auto;gap:18px;align-items:center;background:#1a1c1f;border:1px solid var(--ln);border-radius:14px;padding:12px 18px 12px 12px}
+.ci.ord,.ci.pf{grid-template-columns:1fr auto;padding:16px 20px}
+.cth{background:radial-gradient(70% 60% at 50% 78%,#2a2d31,#15171a);border-radius:10px;overflow:hidden;cursor:pointer}
+.cin{display:grid;gap:2px}.cin b{font-size:18px;font-weight:600}
+.cqt{display:grid;gap:8px;justify-items:end}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--ln);border-radius:99px}
+.qty button{background:none;border:0;width:36px;height:36px;font-size:18px;color:var(--w)}.qty button:disabled{opacity:.35;cursor:not-allowed}
+.qty span{min-width:30px;text-align:center}.price.lt{font-size:18px}
+.sum{position:sticky;top:90px;background:#1a1c1f;border:1px solid var(--ln);border-radius:14px;padding:22px;display:grid;gap:14px}
+.sum h3{font-size:18px;font-weight:600}.sum .btn{justify-content:center}
+.srow{display:flex;justify-content:space-between;align-items:baseline}.srow.tot{border-top:1px solid var(--ln);padding-top:14px;font-size:18px}.srow.tot .price{font-size:26px}
+.cempty{padding:70px 20px}.cempty h3{font-size:20px;font-weight:600}
+.ei{width:64px;height:64px;margin:0 auto 14px;border:1px solid var(--ln);border-radius:50%;display:grid;place-items:center;color:var(--g)}.ei svg{width:28px;height:28px}
+.okbox,.note{border:1px solid var(--ln);border-radius:12px;padding:14px 18px;margin-bottom:20px;font-size:14px;line-height:1.9}
+.okbox{border-color:var(--g);background:rgba(180,154,114,.08)}.okbox p{margin:4px 0}.note{border-style:dashed;color:#c9c7c0}
+.narrow{max-width:640px}.fm{display:grid;gap:16px;margin-top:6px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fld{display:grid;gap:6px}.fld label{font-size:14px;color:#c9c7c0}
+.fld input{background:#1a1c1f;border:1px solid var(--ln);border-radius:10px;padding:12px 14px;color:var(--w);min-width:0;width:100%}
+.fld input.ltr{direction:ltr;text-align:left}.fld input:focus{outline:1px solid var(--g)}
+.fld.bad input{border-color:#d98a7c}.fld small{color:#e0a094;font-size:13px}
+@media(max-width:900px){.cart{grid-template-columns:1fr}.sum{position:static}}
+@media(max-width:560px){.ci{grid-template-columns:96px 1fr;padding:10px}.cqt{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}.frow{grid-template-columns:1fr}.ci.ord,.ci.pf{grid-template-columns:1fr}}
+
+.ub{display:flex;flex-direction:row;align-items:center;justify-content:center;width:auto;height:40px;padding:0 14px;gap:8px;border:1px solid var(--ln);border-radius:99px;font-size:14px;margin-inline-start:6px}
+.ub:hover{border-color:var(--g)}.ub svg{width:18px;height:18px}.ut{white-space:nowrap}
+.onlym{display:none}
+@media(max-width:900px){.ut{display:none}.ub{width:40px;padding:0;border:0;margin:0}nav.open .onlym{display:block}}
+@media(max-width:520px){.logo{font-size:21px;letter-spacing:.3em}.ib,.ub{width:36px}.ico{gap:0}}
 </style>
 </head>
 <body>
@@ -256,16 +267,12 @@ section{padding:60px 0}
 <script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>
 const {useState,useEffect,useMemo,useRef}=React;
 const html=htm.bind(React.createElement);
 const fmt=n=>n.toLocaleString('fa-IR');
 const money=n=>'$'+n.toLocaleString('en-US');
 const CATS=['اسپرت','سوپراسپرت'];
-const SB=(()=>{try{return window.supabase.createClient('https://mxfspihhillnytdnnnyg.supabase.co','sb_publishable_gT5gJQWf747KVy4cCuewhw_pC85jZT0',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}})}catch(e){return null}})();
-const OFF='اتصال به سرور برقرار نیست؛ اینترنت را بررسی کنید.';
-const mapErr=m=>{m=(m||'').toLowerCase();return m.includes('invalid login')?'ایمیل یا رمز عبور درست نیست.':m.includes('not confirmed')?'ایمیل شما هنوز تأیید نشده است؛ لینک ارسال‌شده را بزنید.':m.includes('rate limit')||m.includes('too many')?'تعداد تلاش زیاد بود؛ کمی بعد دوباره امتحان کنید.':m.includes('password')?'رمز عبور پذیرفته نشد؛ رمز قوی‌تری انتخاب کنید.':m.includes('fetch')||m.includes('network')?OFF:'خطایی رخ داد؛ دوباره تلاش کنید.'};
 const CARS=[
 {id:'f296',n:'Ferrari 296 GTB',tg:'Hybrid heartbeat.',c:'سوپراسپرت',p:322000,hp:819,s:2.9,t:330,e:'V6 توئین‌توربو پلاگین‌هیبرید',y:2022,seats:2,d:'ابرخودروی هیبرید پلاگین با موتور V6 توئین‌توربو و موتور الکتریکی؛ ترکیبی از شتاب بی‌وقفه و صدایی فراموش‌نشدنی.'},
 {id:'p911',n:'Porsche 911',tg:'The legend, evolved.',c:'اسپرت',p:135000,hp:443,s:3.5,t:308,e:'فلت‌ سیکس توئین‌توربو',y:2023,seats:4,d:'نماد کوپه‌های اسپرت با موتور شش‌سیلندر تخت در عقب؛ دقت بالا در فرمان و کاربردی‌بودن در استفاده روزمره.'},
@@ -283,9 +290,9 @@ const BEST={p:-1,hp:1,s:-1,t:1};
 const IC={heart:'M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z',search:'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5',arrow:'M5 12h14M13 6l6 6-6 6',left:'M19 12H5M11 6l-6 6 6 6',menu:'M4 7h16M4 12h16M4 17h16',bolt:'M13 2L4 14h7l-1 8 10-13h-7z',clock:'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2',speed:'M4 17a9 9 0 1 1 16 0M12 15l4-5',gear:'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM12 2v3M12 19v3M2 12h3M19 12h3'};
 const Ic=({n,f})=>html`<svg viewBox="0 0 24 24" fill=${f?'currentColor':'none'} stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d=${IC[n]}/></svg>`;
 
-Object.assign(IC,{plus:'M12 5v14M5 12h14',cam:'M4 8h3l2-3h6l2 3h3v11H4zM12 11a3 3 0 1 0 0 6 3 3 0 0 0 0-6z'});
+Object.assign(IC,{cart:'M3 4h2l2.4 11h10.2L20 7H6.2M9 20.2v.01M17 20.2v.01',user:'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21c0-4 3.6-6 8-6s8 2 8 6',plus:'M12 5v14M5 12h14',cam:'M4 8h3l2-3h6l2 3h3v11H4zM12 11a3 3 0 1 0 0 6 3 3 0 0 0 0-6z'});
 /* ---- مدیریت تصاویر: عکس‌ها در IndexedDB مرورگر کاربر ذخیره می‌شوند ---- */
-const EMB=/*EMB*/{f296:{photos:['ed52707fdaf72101bf2651d4576a011a']},p911:{photos:['e025f0d5bdc555ed3033c9b74c7d7b7e']},m4:{photos:['730da519e654482ae211bff1c228f35d']},amg:{photos:['93bfcb66ae88b9c2c62cc2ad8b6109b7']},supra:{photos:['86adc70e598d1a9e207f3bf12cb0e4be']},r8:{photos:['cc898a5816ccf9853ee35776f87433e3']},huracan:{photos:['bc7c07a6644e61c60b4f4c304cc4b413']},m720s:{photos:['957da6076d71f696d7031a6404fd2f6f']}};
+const EMB=/*EMB*/{f296:{photos:['images/cars/f296.webp']},p911:{photos:['images/cars/p911.webp']},m4:{photos:['images/cars/m4.webp']},amg:{photos:['images/cars/amg.webp']},supra:{photos:['images/cars/supra.webp']},r8:{photos:['images/cars/r8.webp']},huracan:{photos:['images/cars/huracan.webp']},m720s:{photos:['images/cars/m720s.webp']}};
 let MEDIA={...EMB};
 const U=s=>s.includes('/')?s:'/_blob/'+s;
 const ph=c=>((MEDIA[c.id]||{}).photos||[]).map(U);
@@ -322,6 +329,25 @@ function V360({c,go}){
     <div class="v3b" onPointerDown=${stop}><button class="ib" aria-pressed=${auto} aria-label=${auto?'توقف':'پخش خودکار'} onClick=${()=>setAuto(!auto)}>${auto?'❚❚':'▶'}</button><div class="prog"><i style=${{width:((idx+1)/n*100)+'%'}}></i></div><span>${fmt(idx+1)} / ${fmt(n)}</span></div></div>`;
 }
 const loadFav=()=>{try{return JSON.parse(localStorage.getItem('velox-fav')||'[]')}catch(e){return[]}};
+/*CART-LOGIC*/
+const CK='velox-cart',OK='velox-orders',PK='velox-profile',SK='velox-session';
+const lsGet=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}};
+const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}};
+const cleanCart=(raw,cars)=>{const m={};(Array.isArray(raw)?raw:[]).forEach(x=>{if(x&&cars.some(c=>c.id===x.id)){const q=Math.max(1,Math.min(9,Math.floor(+x.q)||1));m[x.id]=Math.min(9,(m[x.id]||0)+q)}});return Object.keys(m).map(id=>({id,q:m[id]}))};
+const cartAdd=(cart,id)=>cart.some(x=>x.id===id)?cart.map(x=>x.id===id?{...x,q:Math.min(9,x.q+1)}:x):[...cart,{id,q:1}];
+const cartSet=(cart,id,q)=>q<1?cart.filter(x=>x.id!==id):cart.map(x=>x.id===id?{...x,q:Math.min(9,q)}:x);
+const cartTotal=(cart,cars)=>cart.reduce((t,x)=>{const c=cars.find(k=>k.id===x.id);return t+(c?c.p*x.q:0)},0);
+const cartCount=cart=>cart.reduce((t,x)=>t+x.q,0);
+const normPhone=v=>{let d=nd(v);if(d.startsWith('98')&&d.length===12)d='0'+d.slice(2);return d};
+const val={
+  first:v=>v.trim().length>=2?'':'نام را وارد کنید (حداقل ۲ حرف)',
+  last:v=>v.trim().length>=2?'':'نام خانوادگی را وارد کنید (حداقل ۲ حرف)',
+  email:v=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())?'':'ایمیل معتبر نیست؛ مثال: name@example.com',
+  phone:v=>/^09\d{9}$/.test(normPhone(v))?'':'شماره موبایل باید مثل ۰۹۱۲۳۴۵۶۷۸۹ باشد',
+  pass:v=>v.length>=8&&/[A-Za-z]/.test(v)&&/\d/.test(v)?'':'رمز عبور حداقل ۸ کاراکتر و شامل حرف و عدد باشد',
+  pass2:(v,f)=>v&&v===f.pass?'':'تکرار رمز عبور با رمز عبور یکسان نیست'};
+/*END-CART-LOGIC*/
+const Fld=({id,label,err,...p})=>html`<div class=${'fld'+(err?' bad':'')}><label for=${id}>${label}</label><input id=${id} aria-invalid=${!!err} aria-describedby=${err?id+'-e':null} ...${p}/>${err?html`<small id=${id+'-e'} role="alert">${err}</small>`:null}</div>`;
 const HT=[['قدرت،','در اوج','زیبایی','تجربه رانندگی متفاوت با خودروهای لوکس جهان'],['فضا،','در اوج','آرامش','شاسی‌بلندی که سفر را بی‌دغدغه می‌کند'],['آینده،','در','سکوت','برقی، دقیق و بی‌زمان؛ طراحی‌شده برای فردا']];
 const TABS=['معرفی خودرو','مشخصات فنی','گالری تصاویر','نمای ۳۶۰°','نظرات کاربران'];
 const REV=[['سارا م.','کابین فوق‌العاده آرام و کیفیت مواد عالی است.'],['کامران ر.','هندلینگ دقیق و پاسخ‌دهی عالی؛ ارزش خرید دارد.'],['نیما ع.','طراحی ساده و باشکوه؛ دقیقاً همان چیزی که می‌خواستم.']];
@@ -331,78 +357,29 @@ function App(){
   const [favs,setFavs]=useState(loadFav),[cmp,setCmp]=useState([]),[menu,setMenu]=useState(false),[view,setView]=useState(0),[tab,setTab]=useState(0);
   const [hs,setHs]=useState(0),[sel,setSel]=useState('f296'),[,setTick]=useState(0),[toast,setToast]=useState(''),[pick,setPick]=useState(null),[fl,setFl]=useState({br:'',yf:'',yt:'',pmin:'',pmax:''}),[showF,setShowF]=useState(false);
   const setF=(k,v)=>setFl(f=>({...f,[k]:v}));const nF=Object.values(fl).filter(Boolean).length;const resetF=()=>setFl({br:'',yf:'',yt:'',pmin:'',pmax:''});
+  const [cart,setCart]=useState(()=>cleanCart(lsGet(CK,[]),CARS)),[orders,setOrders]=useState(()=>lsGet(OK,[])),[prof,setProf]=useState(()=>lsGet(PK,null)),[sess,setSess]=useState(()=>{try{return sessionStorage.getItem(SK)==='1'}catch(e){return false}});
+  const [rf,setRf]=useState({first:'',last:'',email:'',phone:'',pass:'',pass2:''}),[re,setRe]=useState({}),[rdone,setRdone]=useState(false),[co,setCo]=useState(null),[cdone,setCdone]=useState(null);
+  useEffect(()=>{lsSet(CK,cart)},[cart]);useEffect(()=>{lsSet(OK,orders)},[orders]);
+  const addCart=c=>{setCart(x=>cartAdd(x,c.id));say(c.n+' به سبد خرید افزوده شد')};
+  const setQty=(id,q)=>setCart(x=>cartSet(x,id,q));
+  const cnt=cartCount(cart),total=cartTotal(cart,CARS);
+  const fp=k=>({id:'f-'+k,value:rf[k],err:re[k],onInput:e=>{const v=e.target.value;setRf(f=>({...f,[k]:v}));if(re[k])setRe(x=>({...x,[k]:''}))},onBlur:()=>{if(rf[k]||re[k])setRe(x=>({...x,[k]:val[k](rf[k],rf)}))}});
+  const submitReg=ev=>{ev.preventDefault();const e={};Object.keys(val).forEach(k=>{const m=val[k](rf[k],rf);if(m)e[k]=m});setRe(e);const ks=Object.keys(e);
+    if(ks.length){const el=document.getElementById('f-'+ks[0]);if(el)el.focus();say('لطفاً خطاهای فرم را برطرف کنید');return}
+    const pr={first:rf.first.trim(),last:rf.last.trim(),email:rf.email.trim(),phone:normPhone(rf.phone),createdAt:new Date().toISOString()};
+    lsSet(PK,pr);try{sessionStorage.setItem(SK,'1')}catch(x){}
+    setProf(pr);setSess(true);setRf({first:'',last:'',email:'',phone:'',pass:'',pass2:''});setRe({});setRdone(true)};
+  const logout=()=>{try{sessionStorage.removeItem(SK)}catch(x){}setSess(false);setRdone(false);say('از حساب محلی خارج شدید')};
+  const wipe=()=>{try{localStorage.removeItem(PK);sessionStorage.removeItem(SK)}catch(x){}setProf(null);setSess(false);setRdone(false);say('اطلاعات ثبت‌نام محلی حذف شد')};
+  const startCo=()=>setCo({name:prof?prof.first+' '+prof.last:'',phone:prof?prof.phone:'',note:'',err:{}});
+  const submitCo=ev=>{ev.preventDefault();const err={};if(co.name.trim().length<3)err.name='نام و نام خانوادگی را وارد کنید';const pm=val.phone(co.phone);if(pm)err.phone=pm;
+    if(Object.keys(err).length){setCo({...co,err});return}
+    const items=cart.map(x=>{const c=CARS.find(k=>k.id===x.id);return{id:x.id,name:c.n,price:c.p,q:x.q}});
+    const o={no:'VX-'+Date.now().toString(36).toUpperCase(),date:new Date().toISOString(),items,total:cartTotal(cart,CARS),name:co.name.trim(),phone:normPhone(co.phone),note:co.note.trim()};
+    setOrders(a=>[o,...a].slice(0,20));setCart([]);setCo(null);setCdone(o);say('درخواست خرید ثبت شد')};
+
   const say=m=>{setToast(m);clearTimeout(window.__t);window.__t=setTimeout(()=>setToast(''),2600)};
   const bump=()=>setTick(x=>x+1);
-  const [user,setUser]=useState(null),[su,setSu]=useState({name:'',id:'',pw:'',pw2:'',ok:false}),[suE,setSuE]=useState({}),[showPw,setShowPw]=useState(false);
-  const en=t=>t.replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d));
-  const idClean=v=>v.slice(0,254);
-  const setS=(k,v)=>{setSu(x=>({...x,[k]:v}));setSuE(e=>({...e,[k]:''}))};
-  const [li,setLi]=useState({id:'',pw:''}),[liE,setLiE]=useState(''),[busy,setBusy]=useState(false),fails=useRef({n:0,until:0});
-  const setL=(k,v)=>{setLi(x=>({...x,[k]:v}));setLiE('')};
-  useEffect(()=>{try{localStorage.removeItem('velox-user');localStorage.removeItem('velox-accts')}catch(e){}
-    if(!SB)return;let alive=true;
-    const apply=async s=>{const u=s&&s.user;if(!u){alive&&setUser(null);return}
-      let name=(u.user_metadata&&u.user_metadata.name)||(u.email||'').split('@')[0];
-      try{const r=await SB.from('profiles').select('name').eq('id',u.id).maybeSingle();if(r.data&&r.data.name)name=r.data.name}catch(e){}
-      alive&&setUser({id:u.id,email:u.email,name})};
-    SB.auth.getSession().then(r=>apply(r.data.session)).catch(()=>{});
-    const {data}=SB.auth.onAuthStateChange((ev,s)=>{setTimeout(()=>apply(s),0)});
-    return()=>{alive=false;data.subscription.unsubscribe()}},[]);
-  useEffect(()=>{if(!SB||!user)return;(async()=>{try{const r=await SB.from('favorites').select('car_id');if(r.error)return;
-    const db=(r.data||[]).map(x=>x.car_id),local=favs.filter(id=>!db.includes(id));
-    if(local.length)await SB.from('favorites').upsert(local.map(id=>({user_id:user.id,car_id:id})),{onConflict:'user_id,car_id',ignoreDuplicates:true});
-    setFavs(f=>[...new Set([...f,...db])])}catch(e){}})()},[user&&user.id]);
-  const [pf,setPf]=useState({name:'',cur:'',pw:'',pw2:''}),[pfE,setPfE]=useState({});
-  useEffect(()=>{if(route==='profile'&&user)setPf({name:user.name,cur:'',pw:'',pw2:''});setPfE({})},[route,user&&user.id]);
-  const setP=(k,v)=>{setPf(x=>({...x,[k]:v}));setPfE(e=>({...e,[k]:''}))};
-  const PWOK=p=>p.length>=8&&/[A-Za-z]/.test(p)&&/\d/.test(p);
-  const logout=async()=>{try{SB&&await SB.auth.signOut()}catch(err){}setUser(null);setFavs([]);say('از حساب خارج شدید');go('home')};
-  const saveName=async()=>{const name=pf.name.trim();if(name.length<2){setPfE({name:'نام خود را وارد کنید (حداقل ۲ حرف).'});return}
-    if(!SB){say(OFF);return}if(busy)return;setBusy(true);
-    try{const r=await SB.from('profiles').update({name}).eq('id',user.id);setBusy(false);
-      if(r.error){setPfE({name:'ذخیره نشد؛ دوباره تلاش کنید.'});return}
-      setUser({...user,name});say('تغییرات پروفایل ذخیره شد')}catch(err){setBusy(false);say(OFF)}};
-  const changePw=async()=>{
-    const e={},f=fails.current,now=Date.now();
-    if(f.until>now){setPfE({cur:'تلاش ناموفق زیاد بود؛ '+fmt(Math.ceil((f.until-now)/1000))+' ثانیه دیگر دوباره تلاش کنید.'});return}
-    if(!pf.cur)e.cur='رمز عبور فعلی را وارد کنید.';
-    if(!PWOK(pf.pw))e.pw='رمز جدید حداقل ۸ کاراکتر و شامل حرف انگلیسی و عدد باشد.';
-    else if(pf.pw2!==pf.pw)e.pw2='تکرار رمز جدید با رمز جدید یکسان نیست.';
-    setPfE(e);if(Object.keys(e).length)return;
-    if(!SB){say(OFF);return}if(busy)return;setBusy(true);
-    try{const v=await SB.auth.signInWithPassword({email:user.email,password:pf.cur});
-      if(v.error){setBusy(false);f.n++;if(f.n>=5){f.n=0;f.until=Date.now()+30000}setPfE({cur:'رمز عبور فعلی درست نیست.'});return}
-      const r=await SB.auth.updateUser({password:pf.pw});setBusy(false);
-      if(r.error){setPfE({pw:mapErr(r.error.message)});return}
-      fails.current={n:0,until:0};setPf(x=>({...x,cur:'',pw:'',pw2:''}));setShowPw(false);say('رمز عبور تغییر کرد')}
-    catch(err){setBusy(false);say(OFF)}};
-  const submitLi=async()=>{
-    const f=fails.current,now=Date.now();
-    if(f.until>now){setLiE('تلاش ناموفق زیاد بود؛ '+fmt(Math.ceil((f.until-now)/1000))+' ثانیه دیگر دوباره تلاش کنید.');return}
-    const email=li.id.trim().toLowerCase();
-    if(!email||!li.pw){setLiE('ایمیل و رمز عبور را وارد کنید.');return}
-    if(!SB){setLiE(OFF);return}if(busy)return;setBusy(true);
-    try{const r=await SB.auth.signInWithPassword({email,password:li.pw});setBusy(false);
-      if(r.error){f.n++;if(f.n>=5){f.n=0;f.until=Date.now()+30000}setLiE(mapErr(r.error.message));return}
-      fails.current={n:0,until:0};setLi({id:'',pw:''});setShowPw(false);say('خوش آمدید');go('home')}
-    catch(err){setBusy(false);setLiE(OFF)}};
-  const submitSu=async()=>{
-    const e={},name=su.name.trim(),email=su.id.trim().toLowerCase();
-    if(name.length<2)e.name='نام خود را وارد کنید (حداقل ۲ حرف).';
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))e.id='یک ایمیل معتبر وارد کنید.';
-    if(!PWOK(su.pw))e.pw='رمز عبور حداقل ۸ کاراکتر و شامل حرف انگلیسی و عدد باشد.';
-    if(su.pw2!==su.pw)e.pw2='تکرار رمز عبور با رمز عبور یکسان نیست.';
-    if(!su.ok)e.ok='برای ادامه باید قوانین را بپذیرید.';
-    setSuE(e);
-    if(Object.keys(e).length){const k=Object.keys(e)[0],el=document.getElementById('su-'+k);el&&el.focus();return}
-    if(!SB){say(OFF);return}if(busy)return;setBusy(true);
-    try{const r=await SB.auth.signUp({email,password:su.pw,options:{data:{name},emailRedirectTo:location.origin+location.pathname}});
-      setBusy(false);
-      if(r.error){setSuE({id:mapErr(r.error.message)});return}
-      setSu({name:'',id:'',pw:'',pw2:'',ok:false});setShowPw(false);
-      if(r.data.session){say('ثبت‌نام انجام شد؛ خوش آمدید '+name);go('home')}
-      else{say('ایمیل تأیید ارسال شد؛ لینک آن را بزنید و بعد وارد شوید.');go('login')}}
-    catch(err){setBusy(false);say(OFF)}};
   const [rt,setRt]=useState({ready:false,edit:false,assets:false,db:false});
   const save=async()=>{bump();try{await RT.db.doc('manifest/main').set({m:MEDIA});return true}catch(e){say('ذخیره فهرست تصاویر ناموفق بود');return false}};
   useEffect(()=>{let off=()=>{};(async()=>{
@@ -416,7 +393,7 @@ function App(){
   useEffect(()=>{try{localStorage.setItem('velox-fav',JSON.stringify(favs))}catch(e){}},[favs]);
   useEffect(()=>{if(route!=='home')return;const t=setInterval(()=>setHs(x=>x+1),7000);return()=>clearInterval(t)},[route,hs]);
   const go=r=>{location.hash=r};
-  const toggleFav=c=>{const on=favs.includes(c.id);setFavs(f=>on?f.filter(x=>x!==c.id):[...f,c.id]);if(SB&&user){(on?SB.from('favorites').delete().eq('user_id',user.id).eq('car_id',c.id):SB.from('favorites').insert({user_id:user.id,car_id:c.id})).then(()=>{},()=>{})}say(on?c.n+' از علاقه‌مندی‌ها حذف شد':c.n+' به علاقه‌مندی‌ها افزوده شد')};
+  const toggleFav=c=>{const on=favs.includes(c.id);setFavs(f=>on?f.filter(x=>x!==c.id):[...f,c.id]);say(on?c.n+' از علاقه‌مندی‌ها حذف شد':c.n+' به علاقه‌مندی‌ها افزوده شد')};
   const toggleCmp=c=>{if(cmp.includes(c.id)){setCmp(cmp.filter(x=>x!==c.id));say(c.n+' از مقایسه حذف شد')}else if(cmp.length>=3)say('حداکثر سه خودرو را می‌توان مقایسه کرد');else{setCmp([...cmp,c.id]);say(c.n+' به مقایسه افزوده شد')}};
   const canEdit=rt.edit&&rt.assets&&rt.db;
   const dropAssets=ids=>ids.filter(x=>x&&!x.includes('/')).forEach(x=>RT.assets.delete(x).catch(()=>{}));
@@ -448,8 +425,9 @@ function App(){
     <div class="pic" onClick=${()=>open(c)}><${Pic} c=${c}/>
       <button class=${'cb h'+(favs.includes(c.id)?' on':'')} aria-pressed=${favs.includes(c.id)} aria-label=${'علاقه‌مندی '+c.n} onClick=${e=>{e.stopPropagation();toggleFav(c)}}><${Ic} n="heart"/></button></div>
     <div class="cinfo" onClick=${()=>open(c)} role="link" tabindex="0" onKeyDown=${e=>{if(e.key==='Enter')open(c)}}><div><h3>${c.n}</h3><div class="sp">${c.hp} HP · ${c.s}s 0-100</div></div><${Ic} n="arrow"/></div>
-    <div class="cft"><span class="price">${money(c.p)}</span><label class="chk"><input type="checkbox" checked=${cmp.includes(c.id)} onChange=${()=>toggleCmp(c)}/>مقایسه</label></div></article>`;
-  const nav=[['home','خانه'],['catalog','خودروها'],['compare','مقایسه'],['media','تصاویر']];
+    <div class="cft"><span class="price">${money(c.p)}</span><label class="chk"><input type="checkbox" checked=${cmp.includes(c.id)} onChange=${()=>toggleCmp(c)}/>مقایسه</label></div>
+    <div class="cact"><button class="btn sm" onClick=${()=>addCart(c)}><${Ic} n="plus"/>افزودن به سبد خرید</button></div></article>`;
+  const nav=[['home','خانه'],['catalog','خودروها'],['favs','علاقه‌مندی‌ها'],['compare','مقایسه'],['media','تصاویر'],['register','ورود / ثبت‌نام']];
   const car=CARS.find(x=>route==='car-'+x.id);
   const base=route.startsWith('car-')?'catalog':route;
   let page;
@@ -463,7 +441,7 @@ function App(){
         ${!P.length?html`<p class="muted" style=${{marginTop:12}}><button class="rm" onClick=${()=>go('media')}>افزودن تصویر برای ${car.n} ←</button></p>`:null}</div>
         <div class="dinfo"><h1>${car.n}</h1><div class="tg">${car.tg}</div>
           <div class="spx" role="list">${sp.map(s=>html`<div class="sr" role="listitem" key=${s[0]}><span class="sl">${s[0]}</span><span class=${'sv'+(s[2]?'':' tx')}><b>${s[1]}</b>${s[2]?html`<em>${s[2]}</em>`:null}</span><${Ic} n=${s[3]}/></div>`)}</div>
-          <div style=${{display:'flex',gap:12,flexWrap:'wrap'}}><button class="btn" aria-pressed=${favs.includes(car.id)} onClick=${()=>toggleFav(car)}><${Ic} n="heart" f=${favs.includes(car.id)}/>${favs.includes(car.id)?'در علاقه‌مندی‌ها':'افزودن به علاقه‌مندی‌ها'}</button>
+          <div style=${{display:'flex',gap:12,flexWrap:'wrap'}}><button class="btn" onClick=${()=>addCart(car)}><${Ic} n="cart"/>افزودن به سبد خرید</button><button class="btn ghost" aria-pressed=${favs.includes(car.id)} onClick=${()=>toggleFav(car)}><${Ic} n="heart" f=${favs.includes(car.id)}/>${favs.includes(car.id)?'در علاقه‌مندی‌ها':'افزودن به علاقه‌مندی‌ها'}</button>
           <button class="btn ghost" onClick=${()=>{if(!cmp.includes(car.id))toggleCmp(car);go('compare')}}>مقایسه</button></div></div></div>
       <div class="tabs" role="tablist">${TABS.map((t,i)=>html`<button key=${i} role="tab" aria-selected=${tab===i} class=${'tab'+(tab===i?' on':'')} onClick=${()=>setTab(i)}>${t}</button>`)}</div>
       <div class="tp" role="tabpanel" style=${tab===3||tab===2?{maxWidth:'none'}:null}>
@@ -473,6 +451,40 @@ function App(){
         ${tab===3?html`<${V360} c=${car} go=${go}/>`:null}
         ${tab===4?html`<div>${REV.map(r=>html`<div class="rv" key=${r[0]}><b>${r[0]}</b><div>${r[1]}</div></div>`)}</div>`:null}</div>
       <h2 style=${{margin:'30px 0 24px'}}>خودروهای <em>مشابه</em></h2><div class="grid">${CARS.filter(x=>x.c===car.c&&x.id!==car.id).concat(CARS.filter(x=>x.c!==car.c)).slice(0,3).map(card)}</div></div>`;
+  }else if(route==='cart'){
+    const rows=cart.map(x=>({c:CARS.find(k=>k.id===x.id),q:x.q})).filter(r=>r.c);
+    const cs=(k,v)=>setCo(o=>({...o,[k]:v,err:{...o.err,[k]:''}}));
+    page=html`<div class="page"><div class="wrap"><h2 style=${{fontSize:34}}>سبد <em>خرید</em></h2><p class="muted" style=${{marginBottom:28}}>خودروهای انتخاب‌شده برای درخواست خرید</p>
+      ${cdone?html`<div class="okbox" role="status"><b>درخواست خرید شما ثبت شد</b><p>شماره درخواست: <span dir="ltr">${cdone.no}</span> · مجموع: ${money(cdone.total)}</p><p class="muted">این درخواست فقط در همین مرورگر ذخیره شده است؛ پرداختی انجام نشده و برای کسی ارسال نشده است.</p><button class="btn ghost sm" onClick=${()=>setCdone(null)}>بستن</button></div>`:null}
+      ${rows.length?html`<div class="cart"><div class="clist">${rows.map(({c,q})=>html`<div class="ci" key=${c.id}>
+          <div class="cth" onClick=${()=>go('car-'+c.id)}><${Pic} c=${c}/></div>
+          <div class="cin"><b>${c.n}</b><span class="muted">${c.br} · ${fmt(c.y)}</span><span class="price">${money(c.p)}</span></div>
+          <div class="cqt"><div class="qty" role="group" aria-label=${'تعداد '+c.n}><button aria-label="کم کردن تعداد" disabled=${q<=1} onClick=${()=>setQty(c.id,q-1)}>−</button><span aria-live="polite">${fmt(q)}</span><button aria-label="زیاد کردن تعداد" disabled=${q>=9} onClick=${()=>setQty(c.id,q+1)}>+</button></div>
+            <span class="price lt">${money(c.p*q)}</span><button class="rm" aria-label=${'حذف '+c.n+' از سبد'} onClick=${()=>{setQty(c.id,0);say(c.n+' از سبد حذف شد')}}>حذف ✕</button></div></div>`)}</div>
+        <aside class="sum">${co?html`<form onSubmit=${submitCo} noValidate style=${{display:'grid',gap:14}}><h3>ثبت درخواست خرید</h3>
+            <${Fld} id="co-name" label="نام و نام خانوادگی" value=${co.name} err=${co.err.name} autocomplete="name" onInput=${e=>cs('name',e.target.value)}/>
+            <${Fld} id="co-phone" label="شماره موبایل" class="ltr" value=${co.phone} err=${co.err.phone} inputmode="tel" autocomplete="tel" onInput=${e=>cs('phone',e.target.value)}/>
+            <${Fld} id="co-note" label="توضیحات (اختیاری)" value=${co.note} onInput=${e=>cs('note',e.target.value)}/>
+            <p class="muted">مجموع: ${money(total)} · پرداخت آنلاین وجود ندارد.</p>
+            <button class="btn" type="submit">تأیید درخواست</button><button class="btn ghost" type="button" onClick=${()=>setCo(null)}>انصراف</button></form>`
+          :html`<h3>خلاصه سفارش</h3><div class="srow"><span>تعداد خودرو</span><b>${fmt(cnt)}</b></div><div class="srow tot"><span>مجموع</span><b class="price">${money(total)}</b></div>
+            <p class="muted">پرداخت آنلاین در این نسخه وجود ندارد؛ فقط درخواست خرید به‌صورت محلی ذخیره می‌شود.</p>
+            <button class="btn" onClick=${startCo}>ثبت درخواست خرید</button><button class="btn ghost" onClick=${()=>{setCart([]);setCo(null);say('سبد خرید خالی شد')}}>خالی کردن سبد</button>`}</aside></div>`
+      :html`<div class="empty cempty"><div class="ei"><${Ic} n="cart"/></div><h3>سبد خرید شما خالی است</h3><p class="muted" style=${{margin:'6px 0 20px'}}>خودروهای موردعلاقه‌تان را از مجموعه انتخاب کنید و به سبد اضافه کنید.</p><button class="btn" onClick=${()=>go('catalog')}>مشاهده خودروها</button></div>`}
+      ${orders.length?html`<h3 style=${{margin:'40px 0 12px'}}>درخواست‌های ثبت‌شده در این مرورگر</h3><div class="clist">${orders.slice(0,3).map(o=>html`<div class="ci ord" key=${o.no}><div class="cin"><b dir="ltr">${o.no}</b><span class="muted">${o.items.map(i=>i.name+' ×'+fmt(i.q)).join('، ')}</span></div><span class="price">${money(o.total)}</span></div>`)}</div>`:null}</div></div>`;
+  }else if(route==='register'){
+    const has=prof&&sess;
+    page=html`<div class="page"><div class="wrap narrow"><h2 style=${{fontSize:34,marginBottom:14}}>${has?html`پروفایل <em>محلی</em>`:html`ثبت‌نام <em>کاربران</em>`}</h2>
+      <div class="note" role="note"><b>نسخه‌ی نمایشی:</b> این ثبت‌نام واقعی و امن نیست و سیستم احراز هویت به‌حساب نمی‌آید. رمز عبور هیچ‌جا ذخیره نمی‌شود و فقط نام، ایمیل و موبایل در همین مرورگر می‌ماند. برای حساب واقعی به بک‌اند و دیتابیس نیاز است.</div>
+      ${rdone?html`<div class="okbox" role="status"><b>ثبت‌نام محلی با موفقیت انجام شد</b><p class="muted">خوش آمدید، ${prof.first}.</p></div>`:null}
+      ${has?html`<div class="ci pf"><div class="cin"><b>${prof.first+' '+prof.last}</b><span class="muted" dir="ltr">${prof.email}</span><span class="muted" dir="ltr">${prof.phone}</span></div><div class="cqt"><button class="btn ghost sm" onClick=${logout}>خروج</button><button class="rm" onClick=${wipe}>حذف اطلاعات محلی</button></div></div>`
+      :html`<form class="fm" onSubmit=${submitReg} noValidate>
+        <div class="frow"><${Fld} label="نام" autocomplete="given-name" ...${fp('first')}/><${Fld} label="نام خانوادگی" autocomplete="family-name" ...${fp('last')}/></div>
+        <${Fld} label="ایمیل" type="email" class="ltr" autocomplete="email" ...${fp('email')}/>
+        <${Fld} label="شماره موبایل" class="ltr" inputmode="tel" autocomplete="tel" placeholder="09123456789" ...${fp('phone')}/>
+        <${Fld} label="رمز عبور" type="password" class="ltr" autocomplete="new-password" ...${fp('pass')}/>
+        <${Fld} label="تکرار رمز عبور" type="password" class="ltr" autocomplete="new-password" ...${fp('pass2')}/>
+        <button class="btn" type="submit" style=${{justifyContent:'center'}}>ثبت‌نام</button></form>`}</div></div>`;
   }else if(route==='media'){
     const ro=!window.claude?'این نسخه خارج از محیط Artifact اجرا می‌شود و ذخیره‌سازی در دسترس نیست.':'فقط ویرایشگران همین Artifact (و مالک) می‌توانند تصاویر را مدیریت کنند؛ برای مشاهده، تصاویر ثبت‌شده نمایش داده می‌شوند.';
     const th=(c,kind,all)=>{const ids=(MEDIA[c.id]||{})[kind]||[];return html`<div class="mth">${(all?ids:ids.slice(0,6)).map((id,i)=>html`<span class="mtb" key=${id+i}><img src=${U(id)} alt=""/>${canEdit&&all?html`<button aria-label="حذف تصویر" onClick=${()=>remove(c,kind,i)}>✕</button><label aria-label="جایگزینی تصویر">⟳<input type="file" accept="image/*" hidden onChange=${e=>{put(c,kind,e.target.files,i);e.target.value=''}}/></label>`:null}</span>`)}</div>`};
@@ -501,46 +513,6 @@ function App(){
       <div class="chips" style=${{marginBottom:20}}>${['همه',...CATS].map(x=>html`<button key=${x} aria-pressed=${cat===x} class=${'chip'+(cat===x?' on':'')} onClick=${()=>setCat(x)}>${x}</button>`)}</div>
       <p class="muted" style=${{marginBottom:16}} role="status">${fmt(list.length)} خودرو</p>
       ${list.length?html`<div class="grid">${list.map(card)}</div>`:html`<div class="empty">خودرویی با این مشخصات پیدا نشد.<br/><br/><button class="btn ghost" onClick=${()=>{setQ('');setCat('همه');resetF()}}>پاک کردن فیلترها</button></div>`}</div></div>`;
-  }else if(route==='profile'){
-    const pfld=(k,label,ac,hint)=>html`<div class=${'fld'+(pfE[k]?' bad':'')}><label for=${'pf-'+k}>${label}</label><div class="pwrow"><input id=${'pf-'+k} type=${showPw?'text':'password'} autocomplete=${ac} value=${pf[k]} aria-invalid=${!!pfE[k]} maxlength="128" onInput=${ev=>setP(k,ev.target.value)} onKeyDown=${ev=>ev.key==='Enter'&&changePw()} style=${{direction:'ltr',textAlign:'left'}}/><button type="button" onClick=${()=>setShowPw(!showPw)} aria-label="نمایش یا پنهان کردن رمز">${showPw?'پنهان':'نمایش'}</button></div>${pfE[k]?html`<div class="err" role="alert">${pfE[k]}</div>`:hint?html`<div class="hint">${hint}</div>`:null}</div>`;
-    page=html`<div class="page"><div class="wrap">${!user?
-      html`<div class="auth" style=${{textAlign:'center'}}><h2 style=${{marginBottom:12}}>برای دیدن پروفایل <em>وارد شوید</em></h2><p class="muted" style=${{marginBottom:24}}>هنوز وارد حساب خود نشده‌اید.</p><button class="btn" onClick=${()=>go('login')}>ورود</button></div>`:
-      html`<div class="pstack">
-      <div class="auth"><div class="av" aria-hidden="true">${user.name.trim().charAt(0).toUpperCase()}</div><div class="eyebrow" style=${{textAlign:'center'}}>Profile</div><h2 style=${{textAlign:'center',margin:'6px 0 24px'}}>پروفایل <em>من</em></h2>
-        <div class=${'fld'+(pfE.name?' bad':'')}><label for="pf-name">نام و نام خانوادگی</label><input id="pf-name" type="text" autocomplete="name" value=${pf.name} aria-invalid=${!!pfE.name} maxlength="60" onInput=${ev=>setP('name',ev.target.value)} onKeyDown=${ev=>ev.key==='Enter'&&saveName()}/>${pfE.name?html`<div class="err" role="alert">${pfE.name}</div>`:null}</div>
-        <div class="fld"><label for="pf-id">ایمیل</label><input id="pf-id" type="text" value=${user.email} disabled style=${{direction:'ltr',textAlign:'left'}}/><div class="hint">این مورد قابل تغییر نیست.</div></div>
-        <button class="btn" onClick=${saveName}>ذخیره تغییرات</button></div>
-      <div class="auth"><h2 style=${{fontSize:22,marginBottom:20}}>تغییر <em>رمز عبور</em></h2>
-        ${pfld('cur','رمز عبور فعلی','current-password')}
-        ${pfld('pw','رمز عبور جدید','new-password','حداقل ۸ کاراکتر، شامل حرف انگلیسی و عدد')}
-        ${pfld('pw2','تکرار رمز عبور جدید','new-password')}
-        <button class="btn" disabled=${busy} onClick=${changePw}>تغییر رمز عبور</button></div>
-      <button class="btn ghost" style=${{justifyContent:'center',width:'100%'}} onClick=${logout}>خروج از حساب</button></div>`}</div></div>`;
-  }else if(route==='login'){
-    page=html`<div class="page"><div class="wrap">${user?
-      html`<div class="auth" style=${{textAlign:'center'}}><div class="eyebrow">Welcome</div><h2 style=${{margin:'8px 0 12px'}}>${user.name}، <em>خوش آمدید</em></h2><p class="muted" style=${{marginBottom:24}}>شما وارد حساب خود شده‌اید.</p><button class="btn" onClick=${()=>go('catalog')}>مشاهده خودروها</button></div>`:
-      html`<div class="auth"><div class="eyebrow">Sign in</div><h2 style=${{marginTop:6}}>ورود به <em>حساب کاربری</em></h2><p class="muted">اگر قبلا ثبت‌نام کرده‌اید، وارد شوید.</p>
-      <div class=${'fld'+(liE?' bad':'')}><label for="li-id">ایمیل</label><input id="li-id" type="text" autocomplete="username" value=${li.id} maxlength="254" onInput=${ev=>setL('id',idClean(ev.target.value))} onKeyDown=${ev=>ev.key==='Enter'&&submitLi()} style=${{direction:'ltr',textAlign:'left'}}/></div>
-      <div class=${'fld'+(liE?' bad':'')}><label for="li-pw">رمز عبور</label><div class="pwrow"><input id="li-pw" type=${showPw?'text':'password'} autocomplete="current-password" value=${li.pw} aria-invalid=${!!liE} maxlength="128" onInput=${ev=>setL('pw',ev.target.value)} onKeyDown=${ev=>ev.key==='Enter'&&submitLi()} style=${{direction:'ltr',textAlign:'left'}}/><button type="button" onClick=${()=>setShowPw(!showPw)} aria-label="نمایش یا پنهان کردن رمز">${showPw?'پنهان':'نمایش'}</button></div>${liE?html`<div class="err" role="alert">${liE}</div>`:null}</div>
-      <button class="btn" disabled=${busy} onClick=${submitLi}>ورود</button>
-      <p class="note">حساب ندارید؟ <button class="lnk" onClick=${()=>go('signup')}>ثبت‌نام کنید</button></p>
-      <p class="note">اطلاعات حساب شما روی سرور نگهداری می‌شود.</p></div>`}</div></div>`;
-  }else if(route==='signup'){
-    const fld=(k,label,type,ac,hint,extra)=>html`<div class=${'fld'+(suE[k]?' bad':'')}><label for=${'su-'+k}>${label}</label>
-      ${extra?html`<div class="pwrow"><input id=${'su-'+k} type=${showPw?'text':'password'} autocomplete=${ac} value=${su[k]} aria-invalid=${!!suE[k]} maxlength=${k==='name'?60:k==='id'?254:128} onInput=${ev=>setS(k,k==='id'?idClean(ev.target.value):ev.target.value)} onKeyDown=${ev=>ev.key==='Enter'&&submitSu()} style=${{direction:'ltr',textAlign:'left'}}/><button type="button" onClick=${()=>setShowPw(!showPw)} aria-label="نمایش یا پنهان کردن رمز">${showPw?'پنهان':'نمایش'}</button></div>`
-      :html`<input id=${'su-'+k} type=${type} autocomplete=${ac} value=${su[k]} aria-invalid=${!!suE[k]} maxlength=${k==='name'?60:k==='id'?254:128} onInput=${ev=>setS(k,k==='id'?idClean(ev.target.value):ev.target.value)} onKeyDown=${ev=>ev.key==='Enter'&&submitSu()} style=${k==='id'?{direction:'ltr',textAlign:'left'}:null}/>`}
-      ${suE[k]?html`<div class="err" role="alert">${suE[k]}</div>`:hint?html`<div class="hint">${hint}</div>`:null}</div>`;
-    page=html`<div class="page"><div class="wrap">${user?
-      html`<div class="auth" style=${{textAlign:'center'}}><div class="eyebrow">Welcome</div><h2 style=${{margin:'8px 0 12px'}}>${user.name}، <em>خوش آمدید</em></h2><p class="muted" style=${{marginBottom:24}}>حساب شما ساخته شده است.</p><button class="btn" onClick=${()=>go('catalog')}>مشاهده خودروها</button></div>`:
-      html`<div class="auth"><div class="eyebrow">Join VELOX</div><h2 style=${{marginTop:6}}>ساخت <em>حساب کاربری</em></h2><p class="muted">برای ذخیرهٔ علاقه‌مندی‌ها و دریافت جدیدترین خودروها ثبت‌نام کنید.</p>
-      ${fld('name','نام و نام خانوادگی','text','name')}
-      ${fld('id','ایمیل','email','email','مثال: name@example.com')}
-      ${fld('pw','رمز عبور','password','new-password','حداقل ۸ کاراکتر، شامل حرف انگلیسی و عدد',true)}
-      ${fld('pw2','تکرار رمز عبور','password','new-password',null,true)}
-      <div class=${'fld'+(suE.ok?' bad':'')}><label class="chk"><input id="su-ok" type="checkbox" checked=${su.ok} onChange=${ev=>setS('ok',ev.target.checked)}/><span>قوانین و حریم خصوصی VELOX را می‌پذیرم.</span></label>${suE.ok?html`<div class="err" role="alert">${suE.ok}</div>`:null}</div>
-      <button class="btn" disabled=${busy} onClick=${submitSu}>ثبت‌نام</button>
-      <p class="note">حساب دارید؟ <button class="lnk" onClick=${()=>go('login')}>وارد شوید</button></p>
-      <p class="note">رمز عبور هرگز به‌صورت متن ساده ذخیره نمی‌شود. بعد از ثبت‌نام، ایمیل تأیید برای شما ارسال می‌شود.</p></div>`}</div></div>`;
   }else if(route==='favs'){
     const l=CARS.filter(x=>favs.includes(x.id));
     page=html`<div class="page"><div class="wrap"><h2 style=${{fontSize:34,marginBottom:30}}><em>علاقه‌مندی‌ها</em></h2>
@@ -562,7 +534,8 @@ function App(){
       <div class="wrap hw"><div class="htxt" key=${hi}><div class="eyebrow">${hc.n}</div><h1>${H[0]}<br/>${H[1]} <em>${H[2]}</em></h1><p>${H[3]}</p><button class="btn" onClick=${()=>go('car-'+hc.id)}><${Ic} n="left"/>مشاهده ${hc.n}</button></div>
         ${hp.length?html`<div class="hcar" key=${hc.id}><img class="im" src=${hp[0]} alt=${hc.n}/></div>`:null}
         ${!hp.length?html`<div class="hempty"><p>برای نمایش Hero سینمایی، عکس واقعی خودروها را بارگذاری کنید.</p><button class="btn ghost" onClick=${()=>go('media')}><${Ic} n="cam"/>بارگذاری تصویر</button></div>`:null}</div>
-      <div class="hfoot"><div class="wrap"><div class="pg"><button aria-label="قبلی" onClick=${()=>setHs(hs+N-1)}><${Ic} n="left"/></button><span>0${hi+1} / 0${N}</span><button aria-label="بعدی" onClick=${()=>setHs(hs+1)}><${Ic} n="arrow"/></button></div></div></div></div>
+      <div class="hfoot"><div class="wrap"><button class="scrl" onClick=${()=>window.scrollTo({top:700,behavior:'smooth'})}><b></b><span>Scroll Down</span></button>
+        <div class="pg"><button aria-label="قبلی" onClick=${()=>setHs(hs+N-1)}><${Ic} n="left"/></button><span>0${hi+1} / 0${N}</span><button aria-label="بعدی" onClick=${()=>setHs(hs+1)}><${Ic} n="arrow"/></button></div></div></div></div>
     <section><div class="wrap"><div class="head"><div><div class="eyebrow">Collection</div><h2 style=${{marginTop:6}}>کلکسیون <em>خودروها</em></h2><p class="muted">بهترین خودروهای لوکس در یک مکان</p></div><button class="btn ghost" onClick=${()=>{setCat('همه');go('catalog')}}>همه خودروها</button></div>
       <div class="cats" style=${{marginBottom:20}}>${CATS.map((x,i)=>html`<button class="cat" key=${x} onClick=${()=>{setCat(x);setQ('');go('catalog')}}><i>0${i+1}</i><b>${x}</b><span>${fmt(CARS.filter(c=>c.c===x).length)} مدل</span></button>`)}</div>
       <div class="grid">${[CARS[0],CARS[1],CARS[6]].map(card)}</div></div></section>
@@ -578,9 +551,11 @@ function App(){
   }
   return html`<div>
     <header class=""><div class="wrap bar"><button class="logo" aria-label="VELOX – صفحه اصلی" onClick=${()=>go('home')}>VELOX</button>
-      <nav aria-label="ناوبری اصلی" class=${menu?'open':''}>${nav.map(([r,l])=>html`<button key=${r} aria-current=${base===r?'page':null} class=${base===r?'on':''} onClick=${()=>go(r)}>${l}</button>`)}</nav>
-      <div class="ico">${user?html`<button class="su on" title="پروفایل من" aria-label="پروفایل من" onClick=${()=>go('profile')}>${user.name.split(' ')[0]}</button>`:html`<button class="su ln" onClick=${()=>go('login')}>ورود</button><button class="su" onClick=${()=>go('signup')}>ثبت‌نام</button>`}<button class="ib" aria-label="جست‌وجو" onClick=${()=>{go('catalog');setTimeout(()=>{const e=document.getElementById('cs');e&&e.focus()},60)}}><${Ic} n="search"/></button>
+      <nav aria-label="ناوبری اصلی" class=${menu?'open':''}>${nav.map(([r,l])=>html`<button key=${r} aria-current=${base===r?'page':null} class=${(base===r?'on':'')+(r==='register'?' onlym':'')} onClick=${()=>go(r)}>${l}</button>`)}</nav>
+      <div class="ico"><button class="ib" aria-label="جست‌وجو" onClick=${()=>{go('catalog');setTimeout(()=>{const e=document.getElementById('cs');e&&e.focus()},60)}}><${Ic} n="search"/></button>
         <button class="ib" aria-label=${'علاقه‌مندی‌ها'+(favs.length?' ('+fmt(favs.length)+')':'')} onClick=${()=>go('favs')}><${Ic} n="heart"/>${favs.length?html`<i>${fmt(favs.length)}</i>`:null}</button>
+        <button class="ib" aria-label=${'سبد خرید'+(cnt?' ('+fmt(cnt)+' خودرو)':'')} onClick=${()=>go('cart')}><${Ic} n="cart"/>${cnt?html`<i>${fmt(cnt)}</i>`:null}</button>
+        <button class="ib ub" aria-label=${prof&&sess?'حساب کاربری':'ورود / ثبت‌نام'} onClick=${()=>go('register')}><${Ic} n="user"/><span class="ut">${prof&&sess?prof.first:'ورود / ثبت‌نام'}</span></button>
         <button class="ib burger" aria-label="منو" aria-expanded=${menu} onClick=${()=>setMenu(!menu)}><${Ic} n="menu"/></button></div></div></header>
     ${page}
     ${cmp.length>0&&route!=='compare'?html`<div class="cmpbar"><span>${fmt(cmp.length)} خودرو برای مقایسه انتخاب شده</span><button class="btn" onClick=${()=>go('compare')}>مقایسه</button><button class="rm" onClick=${()=>{setCmp([]);say('مقایسه پاک شد')}}>پاک کردن</button></div>`:null}
