@@ -269,6 +269,21 @@ section{padding:60px 0}
 @media(max-width:900px){.cart{grid-template-columns:1fr}.sum{position:static}}
 @media(max-width:520px){.bar{gap:6px}.logo{font-size:18px;letter-spacing:.25em}.ib{width:32px;height:36px}.ib svg{width:19px;height:19px}.ico{gap:0}.su{padding:4px 8px;font-size:11.5px;margin-inline-end:2px}}
 @media(max-width:560px){.ci{grid-template-columns:96px 1fr;padding:10px}.cqt{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}.ci.ord{grid-template-columns:1fr}}
+
+/* ---- منوی مرتب‌سازی ---- */
+.sortm{position:relative}
+.sortb{display:inline-flex;align-items:center;justify-content:space-between;gap:12px;min-width:190px;background:#1a1c1f;border:1px solid rgba(180,154,114,.35);border-radius:99px;padding:10px 18px;font-size:14px;color:var(--w);transition:border-color .2s,background .2s}
+.sortb:hover{border-color:var(--g);background:#202327}.sortb.open{border-color:var(--g);background:#202327}
+.sortb:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+.sortb svg{width:16px;height:16px;color:var(--g);flex:none;transition:transform .18s ease}.sortb.open svg{transform:rotate(180deg)}
+.sorto{position:absolute;z-index:35;inset-inline-start:0;min-width:100%;width:max-content;max-width:calc(100vw - 32px);top:calc(100% + 8px);margin:0;padding:6px;list-style:none;background:#15171a;border:1px solid rgba(180,154,114,.32);border-radius:16px;box-shadow:0 18px 40px rgba(0,0,0,.5);animation:sortin .16s ease both;transform-origin:top}
+.sorto li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border-radius:10px;font-size:14px;color:#c9c7c0;cursor:pointer;transition:background .15s,color .15s}
+.sorto li.act{background:rgba(180,154,114,.08);color:var(--g)}
+.sorto li.sel{background:rgba(180,154,114,.14);color:var(--g)}
+.sorto li span{white-space:nowrap}.sorto li svg{width:16px;height:16px;flex:none}
+@keyframes sortin{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.sorto{animation:none}.sortb svg{transition:none}}
+@media(max-width:560px){.sortm{flex:1 1 100%}.sortb{width:100%}}
 </style>
 </head>
 <body>
@@ -356,6 +371,27 @@ const loadFav=()=>{try{return JSON.parse(localStorage.getItem('velox-fav')||'[]'
 const HT=[['قدرت،','در اوج','زیبایی','تجربه رانندگی متفاوت با خودروهای لوکس جهان'],['فضا،','در اوج','آرامش','شاسی‌بلندی که سفر را بی‌دغدغه می‌کند'],['آینده،','در','سکوت','برقی، دقیق و بی‌زمان؛ طراحی‌شده برای فردا']];
 const TABS=['معرفی خودرو','مشخصات فنی','گالری تصاویر','نمای ۳۶۰°','نظرات کاربران'];
 const REV=[['سارا م.','کابین فوق‌العاده آرام و کیفیت مواد عالی است.'],['کامران ر.','هندلینگ دقیق و پاسخ‌دهی عالی؛ ارزش خرید دارد.'],['نیما ع.','طراحی ساده و باشکوه؛ دقیقاً همان چیزی که می‌خواستم.']];
+/* منوی مرتب‌سازی سفارشی (الگوی ARIA: select-only combobox) — همان گزینه‌ها و همان state `sort` */
+const SORTS=[['new','مرتب‌سازی بر اساس'],['pa','ارزان‌ترین'],['pd','گران‌ترین'],['hp','قدرتمندترین']];
+function SortMenu({value,onChange}){
+  const [open,setOpen]=useState(false),[act,setAct]=useState(0),box=useRef(),btn=useRef();
+  const cur=Math.max(0,SORTS.findIndex(o=>o[0]===value));
+  useEffect(()=>{if(!open)return;const f=e=>{if(box.current&&!box.current.contains(e.target))setOpen(false)};document.addEventListener('pointerdown',f);return()=>document.removeEventListener('pointerdown',f)},[open]);
+  const openIt=()=>{setAct(cur);setOpen(true)};
+  const pick=i=>{onChange(SORTS[i][0]);setOpen(false);if(btn.current)btn.current.focus()};
+  const key=e=>{
+    if(!open){if(['ArrowDown','ArrowUp','Enter',' '].includes(e.key)){e.preventDefault();openIt()}return}
+    if(e.key==='Escape'){e.preventDefault();setOpen(false)}
+    else if(e.key==='ArrowDown'){e.preventDefault();setAct(a=>(a+1)%SORTS.length)}
+    else if(e.key==='ArrowUp'){e.preventDefault();setAct(a=>(a+SORTS.length-1)%SORTS.length)}
+    else if(e.key==='Home'){e.preventDefault();setAct(0)}
+    else if(e.key==='End'){e.preventDefault();setAct(SORTS.length-1)}
+    else if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(act)}
+    else if(e.key==='Tab')setOpen(false)};
+  return html`<div class="sortm" ref=${box}>
+    <button ref=${btn} type="button" class=${'sortb'+(open?' open':'')} role="combobox" aria-label="مرتب‌سازی" aria-haspopup="listbox" aria-expanded=${open} aria-controls="sort-list" aria-activedescendant=${open?'sort-o'+act:null} onClick=${()=>open?setOpen(false):openIt()} onKeyDown=${key}>
+      <span>${SORTS[cur][1]}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+    ${open?html`<ul class="sorto" id="sort-list" role="listbox" aria-label="مرتب‌سازی">${SORTS.map((o,i)=>html`<li key=${o[0]} id=${'sort-o'+i} role="option" aria-selected=${i===cur} class=${(i===cur?'sel ':'')+(i===act?'act':'')} onMouseEnter=${()=>setAct(i)} onClick=${()=>pick(i)}><span>${o[1]}</span>${i===cur?html`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>`:null}</li>`)}</ul>`:null}</div>`}
 function App(){
   const [route,setRoute]=useState(location.hash.slice(1)||'home');
   const [q,setQ]=useState(''),[cat,setCat]=useState('همه'),[sort,setSort]=useState('new');
@@ -556,7 +592,7 @@ function App(){
     page=html`<div class="page"><div class="wrap"><h2 style=${{fontSize:34}}>کلکسیون <em>خودروها</em></h2><p class="muted" style=${{marginBottom:28}}>بهترین خودروهای لوکس در یک مکان</p>
       ${pick?html`<div class="pickbar" role="status"><span>یک خودرو را برای مقایسه انتخاب کنید (${fmt(cmp.length)} از ۳)</span><button class="rm" onClick=${()=>{const b=pick.back;setPick(null);go(b)}}>انصراف</button></div>`:null}
       <div class="tools"><input id="cs" type="search" aria-label="جست‌وجو" placeholder="جست‌وجوی نام، دسته یا پیشرانه…" value=${q} onInput=${e=>setQ(e.target.value)}/>
-      <select value=${sort} onChange=${e=>setSort(e.target.value)} aria-label="مرتب‌سازی"><option value="new">مرتب‌سازی بر اساس</option><option value="pa">ارزان‌ترین</option><option value="pd">گران‌ترین</option><option value="hp">قدرتمندترین</option></select>
+      <${SortMenu} value=${sort} onChange=${setSort}/>
       <button class="btn ghost sm" aria-expanded=${showF} aria-controls="fp" onClick=${()=>setShowF(!showF)}>فیلترها${nF?' ('+fmt(nF)+')':''}</button></div>
       ${showF?html`<div class="fpanel" id="fp"><label>برند<select value=${fl.br} onChange=${e=>setF('br',e.target.value)}><option value="">همه برندها</option>${[...new Set(CARS.map(c=>c.br))].sort().map(b=>html`<option key=${b} value=${b}>${b}</option>`)}</select></label>
         <label>سال ساخت از<select value=${fl.yf} onChange=${e=>setF('yf',e.target.value)}><option value="">همه</option>${[...new Set(CARS.map(c=>c.y))].sort().map(y=>html`<option key=${y} value=${y}>${fmt(y)}</option>`)}</select></label>
